@@ -1,0 +1,173 @@
+@page {
+    size: B5;
+    @bottom-center {
+        content: counter(page);
+    }
+}
+
+
+div#TOC {
+    break-before:  page;
+}
+
+div#imprint {
+    break-before: page;
+}
+
+
+h1 {
+    break-before: page;
+}
+
+/* 本文 */
+h1,h2,h3 {
+    font-family: "Source Han Code JP N";
+}
+
+h1 {
+    font-size: 18pt;
+}
+
+h2 {
+    font-size: 16pt;
+}
+
+p a {
+    font-family: "Ricty Diminished";
+    color: black;
+    text-decoration: none;
+    border-bottom: dotted 2px black;
+    font-size: 12px;
+}
+
+li a {
+    font-family: "Ricty Diminished";
+    color: black;
+    text-decoration: none;
+    border-bottom: dotted 2px black;
+}
+
+
+p {
+    font-family: "Source Han Serif";
+    font-size: 12px;
+}
+
+li {
+    font-family: "Source Han Serif";
+    font-size: 12px;
+}
+
+li code {
+    font-family: "Ricty Diminished";
+    font-size: 11px;
+}
+
+img {
+    max-width: 500px;
+    height: auto;
+}
+
+/* コードブロック */
+p code {
+    font-family: "Ricty Diminished";
+    font-size: 11px;
+}
+
+code  {
+    font-family: "Ricty Diminished";
+    font-size: 11px;
+}
+
+
+pre  {
+    font-family: "Ricty Diminished";
+    font-size: 12px;
+}
+
+div.listing p {
+    font-family: "Source Han Code JP N";
+    font-size: 11px;
+    margin: 0; 
+    padding: 0;
+}
+
+div.listing {
+    margin: 1.5em 1.5em 0 0.5em;
+    padding: 0.5em 0.5em;
+    border-left: solid 2px #000000;
+}
+
+
+/* 目次 */
+#TOC a::after {
+    content: target-counter(attr(href), page);
+    float: right;
+}
+
+#TOC ul li {
+    font-family: "Source Han Code JP N";
+    font-size: 14px;
+}
+
+/* 中表紙 */
+h2#title1 {
+    font-family: "Source Han Code JP N" !important;
+    font-size:9pt;
+}
+h2#title2 {
+    font-family: "Source Han Code JP N" !important;
+    font-size: 14pt;
+}
+
+#author p {
+    font-family: "Source Han Code JP N";
+    font: size 12pt;
+}
+
+table#author {
+    position: fixed;
+    top: 800px;
+    left: 400px;
+}
+
+/* 奥付 */
+div#imprint{
+    position: absolute;
+    top: 500px;
+    width: 500px;
+}
+
+div#imprint h2 {
+    font-size: 12pt;
+    text-align: center;
+}
+
+div#imprint table {
+    font-size: 10pt;
+}
+
+td.key {
+    -moz-text-align-last: justify;
+    text-align-last: justify;
+}
+
+/*
+@font-face {
+    font-family: "Source Han Serif";
+    src: url(SourceHanSerif-Regular.otf) format('truetype')
+}
+
+@font-face {
+    font-family: "源ノ角ゴシック Code JP R";
+    src: url(SourceHanSans-Normal.otf) format('opentype')
+}
+*/
+/*
+@font-face {
+    font-family: "Ricty Diminished";
+    src: url(RictyDiminished-Regular.ttf) format('truetype')
+}
+*/
+
+
