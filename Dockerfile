@@ -1,10 +1,11 @@
-FROM hiroyukionaka/pandoc-lualatex-ja:2.5
+FROM hiroyukionaka/pandoc-viola-savepdf-ja:latest
 MAINTAINER Hiroyuki Onaka
 
 RUN mkdir -p /tmp/code
 ADD . /tmp/code/
 RUN rm -rf /tmp/code/target
 RUN mkdir -p /tmp/code/target
+
 
 WORKDIR /tmp/code
 

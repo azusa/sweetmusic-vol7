@@ -21,13 +21,13 @@ cat -n src/tmp.md
 cd src
 
 pandoc  \
-  -f markdown+smart+raw_tex+citations+yaml_metadata_block+fenced_code_blocks+ inline_notes \
-  -c book.css --filter pandoc-crossref --file-scope \
+  -f markdown+smart+raw_tex+citations+yaml_metadata_block+fenced_code_blocks+inline_notes \
+  -c book.css --filter pandoc-crossref  \
   -M "crossrefYaml=${PWD}/../crossref_config.yaml" \
   --filter pandoc-citeproc -o ../target/${OUTPUT}.html \
   --toc --toc-depth=2 --reference-location=block \
   -B cover.html -A imprint.html \
-  *.md  --verbose
+  tmp.md  --verbose
 
 # cat epub.yaml >> tmp.md
 # pandoc -V fontsize:12pt -V papersize:b5 -s -f markdown+raw_tex+citations+yaml_metadata_block+fenced_code_blocks+ignore_line_breaks --filter pandoc-crossref -M "crossrefYaml=${PWD}/../crossref_config.yaml" --filter pandoc-citeproc -t epub3 -o ../target/${OUTPUT}.epub --latex-engine=lualatex   --toc --toc-depth=2 -S  tmp.md  --verbose
@@ -39,5 +39,7 @@ RET=$?
 mkdir -p target/img
 cp -f src/*.css src/*.otf src/*.ttf target/
 cp -f src/img/* target/img
+
+savepdf --no-sandbox -s JIS-B5  -o target/${OUTPUT}.pdf target/${OUTPUT}.html
 
 exit $RET

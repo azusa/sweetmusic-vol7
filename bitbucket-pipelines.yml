@@ -1,4 +1,4 @@
-image: hiroyukionaka/pandoc-redpen-ja
+image: hiroyukionaka/pandoc-viola-savepdf-ja:latest
 
 clone:
   lfs: true
@@ -10,12 +10,4 @@ pipelines:
             - rm -rf target
             - mkdir -p target
             - bash ./build.sh
-            - bash ./deploy.sh master
-  branches:
-    release:
-      - step:
-          script:
-            - rm -rf target
-            - mkdir -p target
-            - bash ./build.sh
-            - bash ./deploy.sh release 
+            - bash ./deploy.sh

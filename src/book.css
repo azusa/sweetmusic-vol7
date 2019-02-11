@@ -6,7 +6,7 @@
 }
 
 
-div#TOC {
+nav#TOC {
     break-before:  page;
 }
 
@@ -126,8 +126,8 @@ h2#title2 {
 }
 
 table#author {
-    position: fixed;
-    top: 800px;
+    position: absolute;
+    bottom: 50px;
     left: 400px;
 }
 
@@ -152,22 +152,20 @@ td.key {
     text-align-last: justify;
 }
 
-/*
+
 @font-face {
     font-family: "Source Han Serif";
     src: url(SourceHanSerif-Regular.otf) format('truetype')
 }
 
 @font-face {
-    font-family: "源ノ角ゴシック Code JP R";
+    font-family: "Source Han Code JP N";
     src: url(SourceHanSans-Normal.otf) format('opentype')
 }
-*/
-/*
 @font-face {
     font-family: "Ricty Diminished";
     src: url(RictyDiminished-Regular.ttf) format('truetype')
 }
-*/
+
 
 
