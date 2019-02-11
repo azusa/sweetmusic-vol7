@@ -1,4 +1,4 @@
-FROM hiroyukionaka/pandoc-viola-savepdf-ja:latest
+FROM fieldnotesjp.azurecr.io/pandoc-viola-savepdf-ja:latest
 MAINTAINER Hiroyuki Onaka
 
 RUN mkdir -p /tmp/code

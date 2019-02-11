@@ -1,5 +1,7 @@
-image: hiroyukionaka/pandoc-viola-savepdf-ja:latest
-
+image:
+  name: fieldnotesjp.azurecr.io/pandoc-viola-savepdf-ja:latest
+  username: $USERNAME
+  password: $PASSWORD
 clone:
   lfs: true
 
