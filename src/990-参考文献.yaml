@@ -17,45 +17,24 @@ fontsize: 16pt
 link-citations: true
 
 references:
-- id: Inoue2017
-  title: 'Mackerelサーバ監視[実践]入門'
+- id: Kaiser1989
   author:
-  - family: 井上
-    given: 大輔
-  - family: 粕谷
-    given: 大輔
-  - family: 杉山
-    given: 広通
-  - family: 田中
-    given: 慎司
-  - family: 坪内
-    given: 佑樹
-  - family: 松木
-    given: 雅幸
+  - family: Kaiser
+    given: Gail E
+  - family: Perry
+    given: Dewayne E
+  - family: Chell
+    given: SWilliam M
+    title: 'Infuse: fusing integration test management with change management'
+  URL: https://www.computer.org/csdl/proceedings/cmpsac/1989/1964/00/00065147.pdf
   issued:
-    year: 2017
-  publisher: 技術評論社
-- id: Allspaw2009
+    year: 1989
+- id: Booch1994
   author:
-  - family: John
-    given: Allspaw
-  title: '10+ Deploys Per Day: Dev and Ops Cooperation at Flickr '
-  URL: https://www.slideshare.net/jallspaw/10-deploys-per-day-dev-and-ops-cooperation-at-flickr
+  - family: Grady
+    given: Booch
   issued:
-    year: 2009
-- id: Fowler2017
-  author:
-  - family: Fowler
-    given: Susan J.
-  title: 'Production-Ready Microservices(「プロダクションレディマイクロサービス　運用に強い本番対応システムの実装と標準化」オライリー・ジャパン)'    
-  issued:
-    year: 2017
-  publisher: O’Reilly Media, 
-  translator:
-  - given: 直生
-    family: 佐藤
-  - given: 高弘
-    family: 長尾
+    year: 1994
     
 ---
 
