@@ -1,17 +1,5 @@
 
 
-### 著者略歴
-
-大中浩行(\@setoazusa)
-
-TDD Boot Camp(TDDBC)を主催するコミュニティーTDD Base Campを中心として、TDDを始めとするアジャイル開発
-プラクティスの普及活動に従事。本職はインフラ構築・運用および、TDDや継続的デリバリーに関する技術支援など。
-Microsoft MVP for Developer Technologies(2018～)
-
-[http://hiroyuki.fieldnotes.jp/](http://hiroyuki.fieldnotes.jp/)
-
-
-
 ---
 fontsize: 16pt
 link-citations: true
@@ -35,6 +23,17 @@ references:
     given: Booch
   issued:
     year: 1994
+- id: Beck2005
+  title: 'エクストリームプログラミング'
+  author:
+  - family: Beck
+    given: Kent
+  - family: Andres
+    given: Cynthia
+  issued: 2015
+  translator:
+  - family: 角
+    given: 征典
     
 ---
 
