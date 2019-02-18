@@ -40,6 +40,8 @@ mkdir -p target/img
 cp -f src/*.css src/*.otf src/*.ttf target/
 cp -f src/img/* target/img
 
-savepdf --no-sandbox -s JIS-B5  -o target/${OUTPUT}.pdf target/${OUTPUT}.html
+node rewrite.js target/${OUTPUT}.html target/${OUTPUT}-rewrite.html
+
+savepdf --no-sandbox -s JIS-B5  -o target/${OUTPUT}.pdf target/${OUTPUT}-rewrite.html
 
 exit $RET

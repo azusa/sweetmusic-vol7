@@ -167,5 +167,9 @@ td.key {
     src: url(RictyDiminished-Regular.ttf) format('truetype')
 }
 
+/* 脚注 */
+.footnote { 
+    float: footnote;
+}
 
 

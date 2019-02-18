@@ -1,5 +1,5 @@
 image:
-  name: fieldnotesjp.azurecr.io/pandoc-viola-savepdf-ja:latest
+  name: fieldnotesjp.azurecr.io/pandoc-viola-savepdf-ja:2.6.1
   username: $USERNAME
   password: $PASSWORD
 clone:
