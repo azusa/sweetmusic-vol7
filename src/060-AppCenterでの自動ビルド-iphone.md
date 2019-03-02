@@ -1,0 +1,1 @@
+# App CenterによるiPhoneアプリの自動ビルド
