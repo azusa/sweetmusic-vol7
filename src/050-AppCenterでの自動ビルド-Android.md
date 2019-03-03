@@ -1,31 +1,17 @@
 # App CenterによるAndroidアプリの自動ビルド
 
-
-
-- Androidのキー作成
-
-https://docs.microsoft.com/ja-jp/xamarin/android/deploy-test/release-prep/index?tabs=windows#archive
-
-
-場所
-
-Visual Studio上で作成したkeystore
-
-```
-%USERPROFILE%\AppData\Local\Xamarin\Mono for Android\Keystore
-```
-
 ## Visual Studioが使用しているXamarin.Formsのバージョンを確認する方法
 
-App Centerのビルド設定には、SDK versionの指定する箇所があります。
-ローカルのVisual Studio上でビルドする時に使用していたの
-Xamarin.Androidのバージョンを確認するには、Visual Studioのメニューの「ヘルプ」→「バージョン情報」から、「インストールされている製品」の表示でXamarin.Android SDNのバージョンの表示を見ます。<span class="footnote"> [https://stackoverflow.com/a/51417938](https://stackoverflow.com/a/51417938) </span>
+App Centerのビルド設定には、SDKのversionを指定する箇所があります。
+
+ローカルのVisual Studio上でビルドする時に使用していた
+Xamarin.Androidのバージョンを確認するには、Visual Studioのメニューの「ヘルプ」→「バージョン情報」から、「インストールされている製品」の表示でXamarin.Android SDKのバージョンの表示を参照します。<span class="footnote"> [https://stackoverflow.com/a/51417938](https://stackoverflow.com/a/51417938) </span>
 
 ## Sign Build
 
 App Center上での実機テスト(Test on real device)および、APKの端末への配布を行うには、以下の設定がビルドごとに必要です。
 
-KeyStoreでビルドが署名されていること
+- KeyStoreでビルドが署名されていること
 
 Andoirプロジェクトの設定で、「Androidオプション」→「共有ランタイム」の使用にチェックが入っていないことが必要です。
 
@@ -48,3 +34,38 @@ Visual Studio For Macの場合はXamarin.Androidプロジェクトのプロパ�
 App CenterでXamarin.Androidプロジェクトのビルドを行う場合、
 この設定は `.csproj`ファイル内の記述を通じて、ローカルでのビルド・デバッグを行う際と、App Center上でビルドを行う際に共有されます。
 
+## Simulatorビルド
+
+## Signed ビルド
+
+- 設定間違えたらビルド最後までいかないとわからないからね！
+
+## Visual Studioで鍵を作成した場合の鍵の場所
+
+- Androidのキー作成
+
+- Android Studioでつくる
+- JDKのkeytoolコマンド
+- VS
+
+https://docs.microsoft.com/ja-jp/xamarin/android/deploy-test/release-prep/index?tabs=windows#archive
+
+
+
+```
+%USERPROFILE%\AppData\Local\Xamarin\Mono for Android\Keystore
+```
+
+## ブランチが増えた場合の設定
+
+## 実機での起動テスト(Test on real device)
+
+## API Keyなどの管理の方法～コード書き換え
+
+- https://qiita.com/amay077/items/aac34280feefd7a1db8c
+- http://shimbaroid.hatenablog.jp/entry/2016/08/15/010350
+
+## AndroidManifestPlaceholdersによるビルド時の環境変数の書き換え
+
+- http://www.raghurana.com/building-and-deploying-apps-using-vsts-and-hockeyapp-part-2nbsp-android
+- https://github.com/xamarin/xamarin-android/pull/342
