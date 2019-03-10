@@ -1,33 +1,65 @@
-# AppCenter
+# App Center
 
-# Projectの作成
+Visual Studio App Center<span class="footnote">以下App Center</span>は、
+マイクロソフト社により提供されている、アプリケーションに特化した開発プラットフォームサービスです。
 
-https://docs.microsoft.com/en-us/appcenter/general/pricing
+App Centerのサービスは、[https://appcenter.ms/](https://appcenter.ms/)で提供されています。
 
+また、App Centerに関するドキュメントは、Microsoft Docsの以下のURLで提供されています。
 
+- [https://docs.microsoft.com/en-us/appcenter/](https://docs.microsoft.com/en-us/appcenter/)
 
+## アプリ
 
-登録
+App Serviceは、アプリケーションの開発者向けに、以下のサービスを提供しています。
 
-https://appcenter.ms/create-account
+- アプリケーションのビルド
+- デバイス上でのテスト
+- チーム内へのビルドしたアプリケーションの配布
+- アプリケーションのクラッシュ情報のレポート
+- アプリケーションの使用状況の分析
+- プッシュ通知
 
+また、以下のOS/プラットフォームのビルドをサポートしています。
 
+### サポートしているOS
 
+- iOS
+- Android
+- Windows
+- macOS(プレビュー)
 
+### サポートしているプラットフォーム
 
-- Provisining Profileの取得
+- Objective-C /Swift
+- React Native
+- Xamarin
+- Unity
+- Cordova(プレビュー)
 
-Visual Studio For Macでは、`-`または`_`を含むソリューション名で作成したXamarin.Formsのプロジェクトを読み込むと、Androidプロジェクトの
-`MainActivity.cs`で`The type or namespace name 'App' could not be found `というコンパイルエラーが発生する問題があります。<span class="footnote">[https://stackoverflow.com/a/52317040](https://stackoverflow.com/a/52317040)</span>この問題を回避するためには、
-プロジェクト作成時の「新しいプロジェクト」画面で、`-`または`_`を含まない名前でプロジェクトを作成します。
+本書では、この機能のうち、アプリケーションのビルド、アプリケーションの配布、クラッシュ情報の分析の機能を中心として取り上げます。
 
+## AppCenterのプラン
 
+App Centerの料金プランは、以下に掲載されています。
 
+- [https://visualstudio.microsoft.com/ja/app-center/pricing/](https://visualstudio.microsoft.com/ja/app-center/pricing/)
+- [https://docs.microsoft.com/en-us/appcenter/general/pricing](https://docs.microsoft.com/en-us/appcenter/general/pricing)
 
+また、無料プランでは、以下の機能を使用することができます。
 
+- 1ヶ月あたり240ビルド時間、ビルドあたり最長30分
+- 実機でのUIテストに対する、30 日間の無料試用版
+- プッシュ通知のユーザーセグメントは5つまで
 
+また、無料プランにおいて、以下の機能は使用に制限がありません。
 
+- アプリケーションのクラッシュ情報の分析
+- アプリケーションの配布
+- クラッシュレポート
+- 実機での起動テスト
 
+また、Visual Studioのサブスクリプションがある場合は、サブククリプションの特典としてApp Centerを使用することができます。^[https://docs.microsoft.com/en-us/visualstudio/subscriptions/vs-visual-studio-app-center](https://docs.microsoft.com/en-us/visualstudio/subscriptions/vs-visual-studio-app-center) サブスクリプションに特典があるかは、以下のURLのページの表示から確認することができます。
 
-
+- [https://my.visualstudio.com/benefits](https://my.visualstudio.com/benefits)
 

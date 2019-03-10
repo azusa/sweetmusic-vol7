@@ -15,11 +15,11 @@ App Center上での実機テスト(Test on real device)および、APKの端末�
 
 Andoirプロジェクトの設定で、「Androidオプション」→「共有ランタイム」の使用にチェックが入っていないことが必要です。
 
-Xamarin.Anroidでは、デバッグ時に、共有ランタイム(Shared RuntimeないしMono Shared Runtimeと呼ばれる)」と呼ばれるユーザーアプリケーションとは別のパッケージをインストールします。
+Xamarin.Anroidでは、デバッグ時に、共有ランタイム<span class="footnote">Shared RuntimeないしMono Shared Runtimeと呼ばれる</span>という、ユーザーアプリケーションとは別のパッケージをインストールします。
 
 これは、一つのXamarin.Androidパッケージにつき、一度だけ行われます。 共有ランタイムとは、デバッグビルドを行う際に、アセンブリビルドの工程を省略し、ビルドおよび起動の時間の短縮をするために行われるものです。<span class="footnote">[https://www.buildinsider.net/mobile/insidexamarin/09](https://www.buildinsider.net/mobile/insidexamarin/09)</span>
 
-App CenterでビルドしたAPKをインストールする際は、この共有ランタイムのインストールが行われないため、この設定が有効になっているとAPKが起動しません。
+App CenterでビルドしたAPKを端末にインストールする際は、この共有ランタイムのインストールが行われないため、この設定が有効になっているとAPKが起動しません。
 
 「共有ランタイム」の設定は、Visual Studio2017で作成したXamarin.Andoroidのデフォルトでは、
 Debugビルドでは有効、Releaseビルドでは有効になっています。
