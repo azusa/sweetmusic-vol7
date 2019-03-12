@@ -142,20 +142,14 @@ Changes not staged for commit:
 `git diff`コマンドで編集内容を確認すると、以下の様になっています。
 
 ```
+
+azusa@SOYOKAZE C:\Users\azusa\source\repos\CalendarViewer [master +0 ~3 -0]
+> git diff
 diff --git a/CalendarViewer/CalendarViewer.Android/CalendarViewer.Android.csproj b/CalendarViewer/CalendarViewer.Android/CalendarViewer.Android.csproj
-index bbd2bc8..a722ee3 100644
+index 66dbab1..4ecc35e 100644
 --- a/CalendarViewer/CalendarViewer.Android/CalendarViewer.Android.csproj
 +++ b/CalendarViewer/CalendarViewer.Android/CalendarViewer.Android.csproj
-@@ -45,7 +45,7 @@
-     <AndroidManagedSymbols>true</AndroidManagedSymbols>
-     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
-   </PropertyGroup>
-- <ItemGroup>
-+  <ItemGroup>
-     <Reference Include="Mono.Android" />
-     <Reference Include="System" />
-     <Reference Include="System.Core" />
-@@ -53,6 +53,18 @@
+@@ -52,6 +52,18 @@
      <Reference Include="System.Xml" />
    </ItemGroup>
    <ItemGroup>
@@ -171,26 +165,15 @@ index bbd2bc8..a722ee3 100644
 +    <PackageReference Include="Microsoft.AppCenter.Distribute">
 +      <Version>1.13.2</Version>
 +    </PackageReference>
-     <PackageReference Include="Xamarin.Forms" Version="3.4.0.1008975" />
-     <PackageReference Include="Xamarin.Android.Support.Design" Version="27.0.2.1" />
-     <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="27.0.2.1" />
-@@ -68,7 +80,9 @@
-   <ItemGroup>
-     <None Include="Resources\AboutResources.txt" />
-     <None Include="Assets\AboutAssets.txt" />
--    <None Include="Properties\AndroidManifest.xml" />
-+    <None Include="Properties\AndroidManifest.xml">
-+      <SubType>Designer</SubType>
-+    </None>
-   </ItemGroup>
-   <ItemGroup>
-     <AndroidResource Include="Resources\layout\Tabbar.axml" />
+     <PackageReference Include="Xamarin.Forms" Version="3.6.0.135200-pre1" />
+     <PackageReference Include="Xamarin.Android.Support.Design" Version="28.0.0.1" />
+     <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="28.0.0.1" />
 diff --git a/CalendarViewer/CalendarViewer.iOS/CalendarViewer.iOS.csproj b/CalendarViewer/CalendarViewer.iOS/CalendarViewer.iOS.csproj
-index e379363..11973d4 100644
+index c9d4f36..250beba 100644
 --- a/CalendarViewer/CalendarViewer.iOS/CalendarViewer.iOS.csproj
 +++ b/CalendarViewer/CalendarViewer.iOS/CalendarViewer.iOS.csproj
-@@ -151,6 +151,18 @@
-     <Reference Include="Xamarin.iOS" />
+@@ -133,6 +133,18 @@
+     <Reference Include="System.Numerics.Vectors" />
    </ItemGroup>
    <ItemGroup>
 +    <PackageReference Include="Microsoft.AppCenter">
@@ -205,28 +188,104 @@ index e379363..11973d4 100644
 +    <PackageReference Include="Microsoft.AppCenter.Distribute">
 +      <Version>1.13.2</Version>
 +    </PackageReference>
-     <PackageReference Include="Xamarin.Forms" Version="3.4.0.1008975" />
+     <PackageReference Include="Xamarin.Forms" Version="3.6.0.135200-pre1" />
+     <PackageReference Include="Xamarin.Essentials" Version="1.0.1" />
    </ItemGroup>
-   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 diff --git a/CalendarViewer/CalendarViewer/CalendarViewer.csproj b/CalendarViewer/CalendarViewer/CalendarViewer.csproj
-index 89a24d3..040d2f5 100644
+index 68bf49a..e873f65 100644
 --- a/CalendarViewer/CalendarViewer/CalendarViewer.csproj
 +++ b/CalendarViewer/CalendarViewer/CalendarViewer.csproj
-@@ -16,6 +16,10 @@
+@@ -11,6 +11,11 @@
    </PropertyGroup>
- 
+
    <ItemGroup>
 +    <PackageReference Include="Microsoft.AppCenter" Version="1.13.2" />
 +    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.13.2" />
 +    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="1.13.2" />
 +    <PackageReference Include="Microsoft.AppCenter.Distribute" Version="1.13.2" />
-     <PackageReference Include="Xamarin.Forms" Version="3.4.0.1008975" />  
++    <PackageReference Include="Microsoft.AppCenter.Push" Version="1.13.2" />
+     <PackageReference Include="Xamarin.Forms" Version="3.6.0.135200-pre1" />
+     <PackageReference Include="Xamarin.Essentials" Version="1.0.1" />
    </ItemGroup>
- </Project>
-\ No newline at end of file
+
+azusa@SOYOKAZE C:\Users\azusa\source\repos\CalendarViewer [master +0 ~3 -0]
+>
 ```
 
-これらのファイルをGitにコミットし、リモートレポジトリにpushします。
+これらのファイルをGitにコミットします。
+
+
+## App CenterのSDKの組み込み
+
+続いて、SDKの開始コードを組み込みます。
+
+### Xamarin.Formsの場合
+
+AppCenterの各アプリケーションの「OverView」の画面を参考にしながら、
+SDKの開始コードを組み込みます。
+
+Xamarin.Formsの場合は、親プロジェクトの`App.xamal.cs`に以下の`using`文を追加します。
+
+```
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
+using Microsoft.AppCenter.Distribute;
+```
+
+続いて`OnStart()`メソッドに、以下の記述を追加します。
+
+```
+AppCenter.Start("android={Your Android App secret here};ios={Your iOS App secret here}", typeof(Analytics), typeof(Crashes), typeof(Distribute));
+```
+
+App Centerでは、AndroidとiOSなど、各プラットフォームごとに別の
+アプリケーションとしてビルドを行います。
+
+このため、プラットフォームごとに別のシークレットを設定する必要があります。
+
+それぞれのアプリケーションごとのシークレットは、App Centerのアプリケーションの
+App Settings画面の「Copy app secret」のメニューからコピーします。
+
+### Androidアプリケーションの場合
+
+Android単独のアプリケーションの場合は、プロジェクトの`MainActivity.cs`に以下のコードを追加します。
+
+以下のusing文を追記します。
+
+```
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
+using Microsoft.AppCenter.Distribute;
+```
+
+`OnCreate`メソッドに以下の文を追加します。
+
+```
+AppCenter.Start("{App Secret}", typeof(Crashes),typeof(Analytics), typeof(Distribute));
+```
+
+### iOSアプリケーションの場合
+
+iOS単独のアプリケーションの場合は、プロジェクトの`AppDelegate.cs`に以下のコードを追加します。
+
+以下のusing文を追記します。
+
+```
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
+using Microsoft.AppCenter.Distribute;
+```
+
+`FinishedLaunching`メソッドに以下の文を追加します。
+
+```
+AppCenter.Start("{App secret]", typeof(Analytics), typeof(Crashes), typeof(Distribute));
+```
+
+以上の変更をコミットして、リモートレポジトリにpushします。
 
 <div class="column">
 
