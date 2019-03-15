@@ -4,6 +4,7 @@
 
 条件: Release Buildであること
 バージョンがあがっていること
+- Microsoft.AppCenter.Distributeが組み込まれていること
 
 https://docs.microsoft.com/en-us/appcenter/distribution/inappupdates
 

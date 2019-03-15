@@ -10,7 +10,14 @@
 
 
 
+<div class="column">
 
+### アプリケーションのURLは変更不可
+
+App Centerは、アプリケーションの作成後、アプリケーションの名称は画面から変更することができますが、
+アプリケーションに対するApp Center上でのURLは変更することができません。
+
+</div>
 
 
 登録
@@ -18,8 +25,7 @@
 https://appcenter.ms/create-account
 
 
-
-- 
+## AppCenterからのプロジェクト作成
 
 
 
@@ -72,9 +78,13 @@ SDKは以下のNuGetパッケージの形式で提供されています。
 ### App CenterのSDKはオープンソースです
 
 App Centerで提供される各種のツールはオープンソースで開発が進められています。
+
 App CenterのSDKは以下のGitHubレポジトリーで公開されています。
 
 - [https://github.com/Microsoft/AppCenter-SDK-DotNet](https://github.com/Microsoft/AppCenter-SDK-DotNet)
+- [https://github.com/Microsoft/AppCenter-SDK-Apple](https://github.com/Microsoft/AppCenter-SDK-Apple)
+- [https://github.com/Microsoft/AppCenter-SDK-Android](https://github.com/Microsoft/AppCenter-SDK-Android)
+- [https://github.com/Microsoft/AppCenter-SDK-React-Native](https://github.com/Microsoft/AppCenter-SDK-React-Native)
 
 </div>
 
@@ -293,3 +303,6 @@ AppCenter.Start("{App secret]", typeof(Analytics), typeof(Crashes), typeof(Distr
 
 </div>
 
+AppCenterでは、アプリケーションを作成した後、初回のビルドを行うためには、ブランチごとにビルドに必要な設定を行う必要があります。
+
+次の章以降では、AndroidとiOSのそれぞれで、ビルドに必要な設定を紹介します。
