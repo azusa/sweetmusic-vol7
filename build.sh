@@ -38,7 +38,7 @@ RET=$?
 
 mkdir -p target/img
 cp -f src/*.css src/*.otf src/*.ttf target/
-cp -f src/img/* target/img
+cp -fr src/img/* target/img
 
 npm install jsdom
 node rewrite.js target/${OUTPUT}.html target/${OUTPUT}-rewrite.html

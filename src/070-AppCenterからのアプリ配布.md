@@ -11,4 +11,3 @@ https://docs.microsoft.com/en-us/appcenter/distribution/inappupdates
 ## アプリ内のパーミッション許可
 
 
-## HockeyAppからのマイグレーション
