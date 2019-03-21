@@ -8,10 +8,10 @@ Configuration、SDK VersionおよびBuild Scriptについては、Androidと同�
 
 ## Build Type
 
-App CenterのiOSアプリケーションのビルドには、「Device Build」と「Simulator Build」の二通りがあります。
+App CenterのiOSアプリケーションのビルドには、「Device Build」と端末をUSBで接続して起動するためのビルドである「Simulator Build」の二通りがあります。
 
-「Simulator Build」のほうが高速に動作しますが、ビルドしたipaファイルを
-実機で起動することができません。
+「Simulator Build」のほうがビルドが高速に動作します。しかし、App Centerでは「Sumularator Build」でビルドしたipaファイルを起動することができません。このため、「Sumularator Build」でビルドしたアプリケーションを配布することはできません。
+
 
 ## Provisining Profileの取得
 
@@ -27,8 +27,8 @@ Provisiong Profileは、アプリケーションを配布するApple ID保持者
 
 上記のような場合は、ビルド設定時の保存時にエラーになります。
 
-- p12ファイルの秘密鍵パスフレーズ不一致
-- Provisioning Profileとp12ファイルの組み合わせが不一致
+- p12ファイルの秘密鍵のパスフレーズが不一致の場合
+- Provisioning Profileとp12ファイルの組み合わせが不一致の場合
 
 開発版のアプリケーションと、Appleに申請してApp Storeで公開するアプリケーションでは、
 デジタル署名に使うProvoisiong Profileと、p12ファイルの組み合わせが異なります。
@@ -47,4 +47,21 @@ Xamarin.FormsのiOSアプリケーションでは、バンドル識別子が一�
 Appleに申請してApp Storeで公開するアプリケーションと、開発版のアプリケーションを
 同一端末にインストールしたいなどで、ブランチごとにバンドル識別子を
 切り替えてアプリケーションをビルドすることがあります。
+
+ビルド時にバンドル識別子を切り替えるには、リポジトリーのトップ階層に`appcenter-pre-build.sh` を作成して、以下のようなスクリプトを実行します。
+
+```
+#!/usr/bin/env bash
+
+plutil -replace  CFBundleIdentifier -string "jp.co.gxp.experiment.honaka.release.CalendarViewer"  CalendarViewer/CalendarViewer.iOS/Info.plist
+```
+
+## AndroidManifestPlaceholdersによるビルド時の環境変数の書き換え
+
+もう一つの方法として、
+
+- https://docs.microsoft.com/en-us/xamarin/ios/app-fundamentals/property-lists
+
+- http://www.raghurana.com/building-and-deploying-apps-using-vsts-and-hockeyapp-part-2nbsp-android
+- https://github.com/xamarin/xamarin-android/pull/342
 
