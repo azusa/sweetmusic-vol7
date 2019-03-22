@@ -80,7 +80,7 @@ App Centerでは、ソリューションファイル(.sln)の設定に従って�
 App CenterでのAndoroidアプリケーションの実機テスト(Test on real device)および、APKの端末への配布を行うには、
 APKファイルに対し、デジタル署名が行われている必要があります。<span class="footnote">https://developer.android.com/guide/publishing/app-signing?hl=ja</span>
 
-「Sign Build」の項目ではデジタル署名に行うキーストアのファイルをアップロードし、以下の設定を行います。
+App Centerの「Sign Build」の項目ではデジタル署名に行うキーストアのファイルをアップロードし、以下の設定を行います。
 
 - キーストアのパスワード(Keystore password)
 - キーの別名(Key alias)
@@ -110,6 +110,12 @@ Visual Studioのアーカイブマネージャーで作成したキーストア�
 
 ## ブランチが増えた場合の設定
 
+App Centerでは、環境変数や、デジタル署名のためのキーストアなど、
+ビルドのために必要な設定はブランチが作成される都度に設定するようになっています。
+
+このため、Gitリポジトリー上にブランチが作成された場合は、
+上記の設定を
+
 ## API Keyなどの管理の方法～コード書き換え
 
 
@@ -120,3 +126,5 @@ Visual Studioのアーカイブマネージャーで作成したキーストア�
 
 - http://www.raghurana.com/building-and-deploying-apps-using-vsts-and-hockeyapp-part-2nbsp-android
 - https://github.com/xamarin/xamarin-android/pull/342
+
+
