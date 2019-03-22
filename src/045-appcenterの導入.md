@@ -39,11 +39,21 @@ Visual StudioでXamarin.Formsのプロジェクトを作成します。
 
 ![プロジェクトの作成](img/045/img-045-100.png){#fig:img_045_100_image}
 
-続いて、以下プルダウンから「Master-Detail」を選択します。([@fig:img_045_110_image])
+プロジェクト名を入力します。本書では、以下プロジェクト名として「CalendarViewer」を使用します。
+
+![プロジェクト名の入力](img/045/img-045-105.png){#fig:img_045_105_image}
+
+続いて、テンプレートから「Master-Detail」を選択します。([@fig:img_045_110_image])
 
 ![プロジェクトの作成](img/045/img-045-110.png){#fig:img_045_110_image}
 
-本書では、以下プロジェクト名として「CalendarViewer」を使用します。
+プロジェクトが作成されたら、ソリューションをバージョン管理に追加します。メニューバーの「ファイル」→「ソース管理」を選択します。([@fig:img_045_115_image])
+
+![プロジェクトの作成](img/045/img-045-115.png){#fig:img_045_115_image}
+
+なお、Visual Studio2017では、このメニューはプロジェクト作成時の「新しいGitリポジトリの作成」のオプションの箇所にあります。([@fig:img_045_116_image])
+
+![Visual Stdui2017の「新しいGitリポジトリの作成」](img/045/img-045-116.png){#fig:img_045_116_image}
 
 <div class="column">
 

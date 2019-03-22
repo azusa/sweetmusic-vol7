@@ -15,7 +15,7 @@ App CenterでAndroidアプリケーションをビルドする際、ビルドし
 
 App Centerで、実機テスト(Test on real device)および、APKの端末への配布を行うには、以下の設定がビルドごとに必要です。
 
-- Andoirプロジェクトの設定で、「Androidオプション」→「共有ランタイム」の使用にチェックが入っていないこと
+- Andoirdプロジェクトの設定で、「Androidオプション」→「共有ランタイム」の使用にチェックが入っていないこと
 - KeyStoreでビルドが署名されていること(後述)
 
 Xamarin.Anroidでは、デバッグ時に、共有ランタイム<span class="footnote">Shared RuntimeないしMono Shared Runtimeと呼ばれる</span>という、
@@ -42,7 +42,9 @@ App CenterでXamarin.Androidプロジェクトのビルドを行う場合、
 
 Visual Studio上でビルドする時に使用していた
 Xamarin.Androidのバージョンを確認するには、Visual Studioのメニューの「ヘルプ」→「バージョン情報」から、
-「インストールされている製品」の表示でXamarin.Android SDKのバージョンの表示を参照します。<span class="footnote"> [https://stackoverflow.com/a/51417938](https://stackoverflow.com/a/51417938) </span>
+「インストールされている製品」の表示でXamarin.Android SDKのバージョンの表示を参照します。<span class="footnote"> [https://stackoverflow.com/a/51417938](https://stackoverflow.com/a/51417938) </span>([@fig:img_045_100_image])
+
+![プロジェクトの作成](img/050/img-050-200.png){#fig:img_050_200_image}
 
 ## Build Script
 
@@ -57,18 +59,18 @@ App Centerでは、ソリューションファイル(.sln)の設定に従って�
 
 ### Post-clone
 
-- appcenter-post-clone.sh (iOSまたはAndroid)
-- appcenter-post-clone.ps1 (UWP)
+- `appcenter-post-clone.sh`  (iOSまたはAndroid)
+- `appcenter-post-clone.ps1`  (UWP)
 
 ### Pre-build
 
-- appcenter-pre-build.sh (iOSまたはAndroid)
-- appcenter-pre-build.ps1 (UWP) 
+- `appcenter-pre-build.sh`  (iOSまたはAndroid)
+- `appcenter-pre-build.ps1` (UWP) 
 
 ### Post-build
 
-- appcenter-post-build.sh (iOSまたはAndroid)
-- appcenter-post-build.ps1 (UWP)
+- `appcenter-post-build.sh`  (iOSまたはAndroid)
+- `appcenter-post-build.ps1`  (UWP)
 
 
 ## Sign Build
@@ -91,15 +93,16 @@ APKファイルに対し、デジタル署名が行われている必要があ�
 
 ## Visual Studioで鍵を作成した場合の鍵の場所
 
+デジタル署名用のキーストアは、通常のAndroidアプリケーションと同様の方法で作成します。
+
 - Androidのキー作成
 
-- Android Studioでつくる
-- JDKのkeytoolコマンド
-- VS
+- Android Studioの「Generate Singed Bundle or APK」コマンド
+- Java SE Development Kit(JDK)のkeytoolコマンド
+- Visual Studioのアーカイブマネージャー
 
-https://docs.microsoft.com/ja-jp/xamarin/android/deploy-test/release-prep/index?tabs=windows#archive
-
-
+Visual Studioのアーカイブマネージャーで作成したキーストアは、
+ローカル環境の以下の箇所に保存されています。
 
 ```
 %USERPROFILE%\AppData\Local\Xamarin\Mono for Android\Keystore
@@ -108,6 +111,7 @@ https://docs.microsoft.com/ja-jp/xamarin/android/deploy-test/release-prep/index?
 ## ブランチが増えた場合の設定
 
 ## API Keyなどの管理の方法～コード書き換え
+
 
 - https://qiita.com/amay077/items/aac34280feefd7a1db8c
 - http://shimbaroid.hatenablog.jp/entry/2016/08/15/010350
