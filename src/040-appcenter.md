@@ -59,7 +59,7 @@ App Centerの料金プランは、以下に掲載されています。
 - クラッシュレポート
 - 実機での起動テスト
 
-また、Visual Studioのサブスクリプションがある場合は、サブククリプションの特典としてApp Centerを使用することができます。^[https://docs.microsoft.com/en-us/visualstudio/subscriptions/vs-visual-studio-app-center](https://docs.microsoft.com/en-us/visualstudio/subscriptions/vs-visual-studio-app-center) サブスクリプションに特典があるかは、以下のURLのページの表示から確認することができます。
+また、Visual Studioのサブスクリプションがある場合は、サブスクリプションの特典としてApp Centerを使用することができます。^[https://docs.microsoft.com/en-us/visualstudio/subscriptions/vs-visual-studio-app-center](https://docs.microsoft.com/en-us/visualstudio/subscriptions/vs-visual-studio-app-center) サブスクリプションの特典を有しているかは、以下のURLのページの表示から確認することができます。
 
 - [https://my.visualstudio.com/benefits](https://my.visualstudio.com/benefits)
 

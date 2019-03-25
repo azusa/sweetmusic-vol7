@@ -244,7 +244,7 @@ azusa@SOYOKAZE C:\Users\azusa\source\repos\CalendarViewer [master +0 ~3 -0]
 AppCenterの各アプリケーションの「OverView」の画面を参考にしながら、
 SDKの開始コードを組み込みます。
 
-Xamarin.Formsの場合は、親プロジェクトの`App.xamal.cs`に以下の`using`文を追加します。
+親プロジェクトの`App.xaml.cs`に以下の`using`文を追加します。
 
 ```
 using Microsoft.AppCenter;
@@ -269,7 +269,7 @@ App Settings画面の「Copy app secret」のメニューからコピーしま�
 
 ### Androidアプリケーションの場合
 
-Android単独のアプリケーションの場合は、プロジェクトの`MainActivity.cs`に以下のコードを追加します。
+Android単独のアプリケーションの場合は、プロジェクトの`MainActivity.cs`<span class="footnote">Xamarin.Forms.Platform.Android.FormsAppCompatActivityクラスを継承したクラス</span>に以下のコードを追加します。
 
 以下のusing文を追記します。
 
@@ -288,7 +288,7 @@ AppCenter.Start("{App Secret}", typeof(Crashes),typeof(Analytics), typeof(Distri
 
 ### iOSアプリケーションの場合
 
-iOS単独のアプリケーションの場合は、プロジェクトの`AppDelegate.cs`に以下のコードを追加します。
+iOS単独のアプリケーションの場合は、プロジェクトの`AppDelegate.cs`<span class="footnote">Xamarin.Forms.Platform.iOS.FormsApplicationDelegateクラスを拡張したクラス</span>に以下のコードを追加します。
 
 以下のusing文を追記します。
 

@@ -12,7 +12,6 @@ App CenterのiOSアプリケーションのビルドには、「Device Build」�
 
 「Simulator Build」のほうがビルドが高速に動作します。しかし、App Centerでは「Sumularator Build」でビルドしたipaファイルを起動することができません。このため、「Sumularator Build」でビルドしたアプリケーションを配布することはできません。
 
-
 ## Provisining Profileの取得
 
 上記の「Device Build」で実機で起動するipaファイルを作成するには、ビルドに
@@ -62,6 +61,4 @@ plutil -replace  CFBundleIdentifier -string "jp.co.gxp.experiment.honaka.release
 
 - https://docs.microsoft.com/en-us/xamarin/ios/app-fundamentals/property-lists
 
-- http://www.raghurana.com/building-and-deploying-apps-using-vsts-and-hockeyapp-part-2nbsp-android
-- https://github.com/xamarin/xamarin-android/pull/342
 
