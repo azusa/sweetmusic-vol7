@@ -23,13 +23,33 @@ if (id == MenuItemType.Crash)
 
 ![メニュバー](img/080/img-080-200.png){#fig:img_080_200_image}
 
-## エラーの
+## エラーレポート
+
+アプリケーション内で発生したエラーを補足するには、
+例外を補足した処理内で、
+`Microsoft.AppCenter.Crashes`クラスの`TraceError`メソッドを呼び出します。
+
+```
+try
+{
+    string value = null;
+    value.Substring(0, 1);
+}
+catch(Exception ex)
+{
+    Crashes.TrackError(ex, new Dictionary<string, string> { { "message", "ぬるぽ" } });
+    return;
+}
+```
+
 
 ## 実機での起動テスト(Test on real device)
 
-App CenterのDiagonsticsで収集できるエラー及びクラッシュは、アプリケーションの起動処理で
+App CenterのDiagonsticsで収集できるエラー及びクラッシュは、アプリケーションの起動処理で`AppCenter`クラスの`Start`メソッドが呼び出され、
 AppCenterのSDKが起動した後に発生するものです。
 
 これより前に発生するエラーは、AppCenterでは収集することができません。
 
+AppCenterでは、ビルド実行時に、AppCenterのデバイスファーム上での
+実機を使って、アプリケーションでの起動をテストすることができます。
 

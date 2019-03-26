@@ -36,6 +36,12 @@ Visual Studio For Macの場合はXamarin.Androidプロジェクトのプロパ�
 App CenterでXamarin.Androidプロジェクトのビルドを行う場合、
 この設定は `.csproj`ファイル内の記述を通じて、ローカルでのビルド・デバッグを行う際と、App Center上でビルドを行う際に共有されます。
 
+Visual Studioのデフォルトの構成である「Debug」「Release」の構成は、
+ローカルでのビルド・デバッグを行う際の構成として主に行われます。
+
+設定を共存させないため、構成マネージャーから、AppCenterでのビルドを
+行うための構成を作成すると良いです。
+
 ## SDKバージョンの指定
 
 「SDK Version」では、ビルドに使用するSDKのバージョンを指定します。
@@ -114,7 +120,9 @@ App Centerでは、環境変数や、デジタル署名のためのキースト�
 ビルドのために必要な設定はブランチが作成される都度に設定するようになっています。
 
 このため、Gitリポジトリー上にブランチが作成された場合は、
-上記の設定を
+上記の設定を新たに行う必要があります。
+
+ブランチごとの環境変数を
 
 ## API Keyなどの管理の方法～コード書き換え
 
@@ -143,7 +151,7 @@ iOSアプリケーションにおける`AppDelegate.cs`の`FinishedLaunching`メ
 ソースコード中にキーを埋め込みたくない場合があります。
 
 Androidには、`AndroidManifest.xml` に記述したメタデータの値を<span class="footnote">https://developer.android.com/guide/topics/manifest/meta-data-element</span>、
-アプリケーション内で `android.content.pm.PackageManager#getApplicationIcon`メソッド<span class="footnote">[https://developer.android.com/reference/android/content/pm/PackageManager.html#getApplicationInfo(java.lang.String,%20int)](https://developer.android.com/reference/android/content/pm/PackageManager.html#getApplicationInfo(java.lang.String,%20int))</span>を通して取得する仕組みがあります。
+アプリケーション内で `android.content.pm.PackageManager`クラスの`getApplicationIcon`メソッド<span class="footnote">[https://developer.android.com/reference/android/content/pm/PackageManager.html#getApplicationInfo(java.lang.String,%20int)](https://developer.android.com/reference/android/content/pm/PackageManager.html#getApplicationInfo(java.lang.String,%20int))</span>を通して取得する仕組みがあります。
 
 また、 `AndroidManifest.xml`内に例えば`${AppCenterSecret}`のように、`$`というプレースホルダーではじまるパラメータを記述することで、ビルドプロセスのシステムプロパティ等に設定した値を、`AndroidManifest.xml`に注入することができます。
 

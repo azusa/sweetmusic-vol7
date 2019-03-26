@@ -54,11 +54,3 @@ Appleに申請してApp Storeで公開するアプリケーションと、開発
 
 plutil -replace  CFBundleIdentifier -string "jp.co.gxp.experiment.honaka.release.CalendarViewer"  CalendarViewer/CalendarViewer.iOS/Info.plist
 ```
-
-## AndroidManifestPlaceholdersによるビルド時の環境変数の書き換え
-
-もう一つの方法として、
-
-- https://docs.microsoft.com/en-us/xamarin/ios/app-fundamentals/property-lists
-
-

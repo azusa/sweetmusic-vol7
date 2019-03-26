@@ -3,14 +3,14 @@
 ## Disribute
 
 - (Androidの場合)ダウンロードするブラウザーからのインストールが許可されていること
+- プロファイルがインストールされていること(iOS)
 - Release Buildであること
 
 ## In App Update
 
-- 条件: Release Buildであること
 - バージョンがあがっていること
 - Microsoft.AppCenter.Distributeが組み込まれていること
-- プロファイルがインストールされていること(iOS)
+
 
 
 https://docs.microsoft.com/en-us/appcenter/distribution/inappupdates
@@ -38,7 +38,7 @@ App Centerでは、ビルドの設定の「Automatically increment version code�
       <dict>
           <key>CFBundleURLSchemes</key>
           <array>
-              <string>appcenter-(iOSアプリケーションのシークレット)</string>
+              <string>appcenter-(AppCenterのiOSアプリケーションのシークレット)</string>
           </array>
       </dict>
   </array>
@@ -56,5 +56,7 @@ App CenterからインストールするAndroidアプリケーションの、ア
 iOSアプリケーションの場合は、ビルドする際に指定するProvisioning Profileの対象に、
 アプリ内更新でインストールする端末が含まれている必要があります。
 
+## iOSのプロファイル登録
 
+## アプリ内更新の挙動
 

@@ -2,6 +2,15 @@
 
 ## アカウントの作成
 
+## 
+
+App Centerのビルドは、以下のスースコード管理に対応しています。
+
+- Azure DevOps
+- GitHub
+- Bitbucket
+
+いずれもクラウドサービス上のGitレポジトリーです。
 
 ## GitHub Appsの導入と
 
