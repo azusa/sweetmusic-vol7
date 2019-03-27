@@ -42,6 +42,14 @@ Visual Studioのデフォルトの構成である「Debug」「Release」の構�
 設定を共存させないため、構成マネージャーから、AppCenterでのビルドを
 行うための構成を作成すると良いです。
 
+なお、Visual Studio上で作成したビルド構成をApp Center上で反映させるには、
+ビルド構成を反映した`.csproj`ファイルをGitレポジトリーにpushした後、
+pushしたブランチを一度ビルドする必要があります。
+
+一度ビルドをすると、追加したビルド構成がApp Centerのビルドの設定上で選択可能になります。
+
+
+
 ## SDKバージョンの指定
 
 「SDK Version」では、ビルドに使用するSDKのバージョンを指定します。
@@ -101,8 +109,6 @@ App Centerの「Sign Build」の項目ではデジタル署名に行うキース
 
 デジタル署名用のキーストアは、通常のAndroidアプリケーションと同様の方法で作成します。
 
-- Androidのキー作成
-
 - Android Studioの「Generate Singed Bundle or APK」コマンド
 - Java SE Development Kit(JDK)のkeytoolコマンド
 - Visual Studioのアーカイブマネージャー
@@ -114,27 +120,14 @@ Visual StudioをインストールしているPCの以下のフォルダーに�
 %USERPROFILE%\AppData\Local\Xamarin\Mono for Android\Keystore
 ```
 
-## ブランチが増えた場合の設定
 
-App Centerでは、環境変数や、デジタル署名のためのキーストアなど、
-ビルドのために必要な設定はブランチが作成される都度に設定するようになっています。
 
-このため、Gitリポジトリー上にブランチが作成された場合は、
-上記の設定を新たに行う必要があります。
-
-ブランチごとの環境変数を
 
 ## API Keyなどの管理の方法～コード書き換え
 
 
 - https://qiita.com/amay077/items/aac34280feefd7a1db8c
 - http://shimbaroid.hatenablog.jp/entry/2016/08/15/010350
-
-
-## AndroidManifestPlaceholdersによるビルド時の環境変数の書き換え
-
-- http://www.raghurana.com/building-and-deploying-apps-using-vsts-and-hockeyapp-part-2nbsp-android
-- https://github.com/xamarin/xamarin-android/pull/342
 
 
 ## AndroidManifestPlaceholdersによるビルド時の環境変数の書き換え
@@ -200,3 +193,10 @@ Gitのリモートリポジトリーに新しいブランチをpushすると、
 
 このブランチの右側の「Settings」を選択し、
 ビルドに必要な設定を行った上で「Save and Build」を、初回のビルドが実行されます。
+
+App Centerでは、環境変数や、デジタル署名のためのキーストアなど、
+ビルドのために必要な設定はブランチが作成される都度に設定するようになっています。
+
+このため、Gitリポジトリー上にブランチが作成された場合は、
+上記の設定を新たに行う必要があります。
+

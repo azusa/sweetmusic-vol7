@@ -63,3 +63,13 @@ App Centerの料金プランは、以下に掲載されています。
 
 - [https://my.visualstudio.com/benefits](https://my.visualstudio.com/benefits)
 
+<div class="column">
+
+### MicrosoftアカウントとAzure ADアカウント
+
+App Centerは、アプリケーションの作成後、アプリケーションの名称は画面から変更することができますが、
+アプリケーションに対するApp Center上でのURLは変更することができません。
+
+URLを変更したい場合は、App Center上でのアプリケーションを一度削除した後、再作成することになります。
+
+</div>

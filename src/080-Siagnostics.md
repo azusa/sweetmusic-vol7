@@ -8,8 +8,8 @@ Diagonsticsは、日本語に訳すと「診断」という意味ですが、App
 
 ## Crash Report
 
-アプリケーション上で、意図的にクラッシュを起こすためには、
-アプリケーション上で`Microsoft.AppCenter.Crashes`クラスの`GenerateTestCrash`メソッドを呼び出します。
+アプリケーション上で、意図的にクラッシュを起こすためのクラスとして、
+`Microsoft.AppCenter.Crashes`クラスに`GenerateTestCrash`というメソッドを呼び出しますが、
 
 ```
 MenuItemType id = ((HomeMenuItem)e.SelectedItem).Id;
@@ -46,10 +46,15 @@ catch(Exception ex)
 ## 実機での起動テスト(Test on real device)
 
 App CenterのDiagonsticsで収集できるエラー及びクラッシュは、アプリケーションの起動処理で`AppCenter`クラスの`Start`メソッドが呼び出され、
-AppCenterのSDKが起動した後に発生するものです。
+AppCenterのSDKが起動した後に発生するエラーです。
 
 これより前に発生するエラーは、AppCenterでは収集することができません。
 
 AppCenterでは、ビルド実行時に、AppCenterのデバイスファーム上での
 実機を使って、アプリケーションでの起動をテストすることができます。
 
+実機での起動テストを行うには、以下の条件が必要です。
+
+- Releaseビルドであること
+- 共有ランタイムを使用していないこと(Androidアプリケーションの場合)
+- APKファイルないしIPAファイルにデジタル署名がされていること
