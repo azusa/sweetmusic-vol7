@@ -8,10 +8,11 @@ App Centerのビルドの設定のための画面は、「Build」のメニュ�
 
 「Configuration」では、ビルドを行う際の構成を選択します。
 
-Visual Studioの「構成マネージャー」の「構成」の設定に相当します。
+Visual Studioの「構成マネージャー」の「構成」の設定に相当するもので、
+Visual Studio上で開発を行う際の設定がバージョン管理を通して共有されます。
 
 App CenterでAndroidアプリケーションをビルドする際、ビルドしたAPK<span class="footnote">Android application package </span>ファイルを
-実機で起動する場合は、通常「Configuration」を「Relelase」に設定します。
+実機で起動する場合は、通常「Configuration」を「Relelase」ないしそれ相当の構成に設定します。
 
 App Centerで、実機テスト(Test on real device)および、APKの端末への配布を行うには、以下の設定がビルドごとに必要です。
 

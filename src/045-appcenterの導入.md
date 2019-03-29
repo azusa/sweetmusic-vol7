@@ -115,15 +115,15 @@ App CenterのSDKは以下のGitHubレポジトリーで公開されています�
 
 ![メニューバー](img/045/img-045-120.png){#fig:img_120_image}
 
-テキストボックスに「appcenter」と入力して、Microsoft.AppCenterを選択します。({@fig:img_130_image})
+テキストボックスに「appcenter」と入力して、Microsoft.AppCenterを選択して「インストール」を選択します。({@fig:img_130_image})
 
 ![NuGetパッケージマネージャー](img/045/img-045-130.png){#fig:img_130_image}
 
-ライセンスへの同意を確認し、「同意する」を選択します。
+ライセンスの内容を確認し、「同意する」を選択します。
 
 ![ライセンスへの同意](img/045/img-045-140.png){#fig:img_140_image}
 
-Microsoft.AppCenterのパッケージをVisual Studioがダウンロードし、端末にインストールされます。
+ライセンスに同意すると、Microsoft.AppCenterのパッケージをVisual Studioがダウンロードし、端末にインストールされます。
 
 以下のパッケージについて、同様にNuGetパッケージをインストールします。
 
