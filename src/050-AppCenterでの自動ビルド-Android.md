@@ -49,8 +49,6 @@ pushしたブランチを一度ビルドする必要があります。
 
 一度ビルドをすると、追加したビルド構成がApp Centerのビルドの設定上で選択可能になります。
 
-
-
 ## SDKバージョンの指定
 
 「SDK Version」では、ビルドに使用するSDKのバージョンを指定します。
@@ -70,7 +68,7 @@ App Centerでは、ソリューションファイル(.sln)の設定に従って�
 - ビルドの前(Pre-build)
 - ビルドの後(Post-build)
 
-スクリプトに処理を追加するには、以下のファイル名のスクリプトをリポジトリーにコミットします。
+スクリプトに処理を追加するには、以下のファイル名のスクリプトをリポジトリーにコミットします。この際、スクリプトは「Build App」の設定で選択されている`.sln`または`.csproj`と同じ階層に配置します。
 
 ### Post-clone
 
@@ -120,16 +118,6 @@ Visual StudioをインストールしているPCの以下のフォルダーに�
 ```
 %USERPROFILE%\AppData\Local\Xamarin\Mono for Android\Keystore
 ```
-
-
-
-
-## API Keyなどの管理の方法～コード書き換え
-
-
-- https://qiita.com/amay077/items/aac34280feefd7a1db8c
-- http://shimbaroid.hatenablog.jp/entry/2016/08/15/010350
-
 
 ## AndroidManifestPlaceholdersによるビルド時の環境変数の書き換え
 
@@ -187,6 +175,60 @@ AppCenter.Start(secret, typeof(Analytics), typeof(Crashes), typeof(Distribute));
 
 - http://www.raghurana.com/building-and-deploying-apps-using-vsts-and-hockeyapp-part-2nbsp-android
 
+## AndroidManifest.xmlのビルド時の書き換え
+
+Androidアプリケーションでは、`AndroidManifest.xml`に記述するパッケージ名は、
+アプリケーションごとに一意である必要があります。
+
+開発・検証向けと、リリース向けで、パッケージ名を切り替える運用を行っている場合は、
+ビルド時に`AndroidManifest.xml`の書き換え処理を行う事になります。
+
+パッケージ名の書き換えを行うには、`.csproj`と同じ階層に`appcenter-pre-build.sh`を置いて
+書き換えの処理を記述します。
+
+ビルド時にパッケージ名の切替を行うには、ブランチごとに、リリース時に使用するパッケージ名を
+割り当てることになります。このため、`appcenter-pre-build.sh`の先頭部分で、App Centerの
+ビルド時の環境変数`APPCENTER_BRANCH`を使って、ブランチ名の判定を行っています。
+
+App Centerのビルド環境では、以下のドキュメントに記述されているツール・コマンドを使用することが出来ます。
+
+次の例では、Node.jsを用いて、`AndroidManifest.xml`の書き換えを行っています。
+
+- [https://docs.microsoft.com/en-us/appcenter/build/software](https://docs.microsoft.com/en-us/appcenter/build/software)
+
+
+```
+#!/usr/bin/env bash
+
+if [ $APPCENTER_BRANCH != "release" ]; then
+  exit 0
+fi
+
+npm install jsdom --save-dev
+node rewrite.js Properties/AndroidManifest.xml
+```
+
+```
+const fs = require('fs');
+const jsdom = require("jsdom");
+const { JSDOM } = jsdom;
+
+const target = process.argv[2];
+
+const content = fs.readFileSync(target , 'utf8');
+
+const { document } = new JSDOM(content, {parsingMode: 'xml', contentType: 'text/xml'}).window;
+
+const manifest = document.getElementsByTagName('manifest');
+
+manifest[0].setAttribute("package", "jp.fieldnotes.app.CalendarViewer");
+
+const xml = '<?xml version="1.0" encoding="utf-8"?>' + "\n" +  document.documentElement.outerHTML;
+console.log(xml);
+
+fs.writeFileSync(target,xml);
+```
+
 ## ブランチが増えた時の挙動
 
 Gitのリモートリポジトリーに新しいブランチをpushすると、
@@ -199,5 +241,5 @@ App Centerでは、環境変数や、デジタル署名のためのキースト�
 ビルドのために必要な設定はブランチが作成される都度に設定するようになっています。
 
 このため、Gitリポジトリー上にブランチが作成された場合は、
-上記の設定を新たに行う必要があります。
+ここまでに説明した設定を新たに行う必要があります。
 

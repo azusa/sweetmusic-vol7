@@ -35,8 +35,6 @@ Provisiong Profileは、アプリケーションを配布するApple ID保持者
 この場合、例えば`master`ブランチを、申請用のビルドにするなどの役割を持たせて、
 ブランチごとにアップロードするProviosing Profileとp12ファイルの組み合わせを切り替えてビルドします。
 
-## PKCS #12 ファイルの取得
-
 ## バンドルIDの書き換え
 
 Xamarin.FormsのiOSアプリケーションでは、バンドル識別子が一意である必要があります。
@@ -47,10 +45,12 @@ Appleに申請してApp Storeで公開するアプリケーションと、開発
 同一端末にインストールしたいなどで、ブランチごとにバンドル識別子を
 切り替えてアプリケーションをビルドすることがあります。
 
-ビルド時にバンドル識別子を切り替えるには、リポジトリーのトップ階層に`appcenter-pre-build.sh` を作成して、以下のようなスクリプトを実行します。
+ビルド時にバンドル識別子を切り替えるには、「Build App」の設定で選択されている`.sln`または`.csproj`と同じ階層に`appcenter-pre-build.sh` を作成して、以下のようなスクリプトを記述します。
 
 ```
-#!/usr/bin/env bash
+if [ $APPCENTER_BRANCH != "release" ]; then
+  exit 0
+fi
 
-plutil -replace  CFBundleIdentifier -string "jp.co.gxp.experiment.honaka.release.CalendarViewer"  CalendarViewer/CalendarViewer.iOS/Info.plist
+plutil -replace  CFBundleIdentifier -string "jp.co.gxp.experiment.honaka.release.CalendarViewer"  Info.plist
 ```
