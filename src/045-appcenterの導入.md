@@ -2,6 +2,22 @@
 
 ## アカウントの作成
 
+App Centerのアカウント作成は、[https://appcenter.ms/create-account](https://appcenter.ms/create-account)
+より行います。App Centerのアカウントの認証は、以下のサービスのアカウントを用いて行います。
+
+- Microsoftアカウント
+- GitHub
+- Facebook
+- Google
+
+ここでは、GitHubアカウントでのアカウント作成について説明します。
+
+
+- GitHubでのアカウント作成
+
+
+
+
 ## 
 
 App Centerのビルドは、以下のスースコード管理に対応しています。
@@ -13,6 +29,7 @@ App Centerのビルドは、以下のスースコード管理に対応してい�
 いずれもクラウドサービス上のGitレポジトリーです。
 
 ## GitHub Appsの導入と
+
 
 
 # Projectの作成
