@@ -85,7 +85,6 @@ App Centerでは、ソリューションファイル(.sln)の設定に従って�
 - `appcenter-post-build.sh`  (iOSまたはAndroid)
 - `appcenter-post-build.ps1`  (UWP)
 
-
 ## Sign Build
 
 「Sign Build」の項目では、アプリケーションに対するデジタル署名の設定を行います。

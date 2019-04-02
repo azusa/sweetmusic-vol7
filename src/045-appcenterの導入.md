@@ -93,6 +93,7 @@ SDKは以下のNuGetパッケージの形式で提供されています。
 - Microsoft.AppCenter.Analytics
 - Microsoft.AppCenter.Crashes
 - Microsoft.AppCenter.Distribute
+- 
 
 <div class="column">
 
