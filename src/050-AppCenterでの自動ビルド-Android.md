@@ -49,6 +49,57 @@ pushしたブランチを一度ビルドする必要があります。
 
 一度ビルドをすると、追加したビルド構成がApp Centerのビルドの設定上で選択可能になります。
 
+共有ランタイムを使用するビルドのアプリケーションを実機にインストールすると、起動に失敗した際、
+デバイスログに以下の様なエラーが出力されます。
+
+```
+2018-12-08 00:51:20.812 13301-13301/? E/AndroidRuntime: FATAL EXCEPTION: main
+    Process: jp.ytabuchi.AppCenterSample, PID: 13301
+    java.lang.RuntimeException: Unable to get provider mono.MonoRuntimeProvider: java.lang.RuntimeException: Unable to find application Mono.Android.Platform.ApiLevel_27 or Xamarin.Android.Platform!
+        at android.app.ActivityThread.installProvider(ActivityThread.java:5867)
+        at android.app.ActivityThread.installContentProviders(ActivityThread.java:5429)
+        at android.app.ActivityThread.handleBindApplication(ActivityThread.java:5368)
+        at android.app.ActivityThread.-wrap2(ActivityThread.java)
+        at android.app.ActivityThread$H.handleMessage(ActivityThread.java:1534)
+        at android.os.Handler.dispatchMessage(Handler.java:102)
+        at android.os.Looper.loop(Looper.java:159)
+        at android.app.ActivityThread.main(ActivityThread.java:6130)
+        at java.lang.reflect.Method.invoke(Native Method)
+        at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:865)
+        at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:755)
+     Caused by: java.lang.RuntimeException: Unable to find application Mono.Android.Platform.ApiLevel_27 or Xamarin.Android.Platform!
+        at mono.MonoRuntimeProvider.attachInfo(MonoRuntimeProvider.java:38)
+        at android.app.ActivityThread.installProvider(ActivityThread.java:5864)
+        at android.app.ActivityThread.installContentProviders(ActivityThread.java:5429) 
+        at android.app.ActivityThread.handleBindApplication(ActivityThread.java:5368) 
+        at android.app.ActivityThread.-wrap2(ActivityThread.java) 
+        at android.app.ActivityThread$H.handleMessage(ActivityThread.java:1534) 
+        at android.os.Handler.dispatchMessage(Handler.java:102) 
+        at android.os.Looper.loop(Looper.java:159) 
+        at android.app.ActivityThread.main(ActivityThread.java:6130) 
+        at java.lang.reflect.Method.invoke(Native Method) 
+        at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:865) 
+        at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:755) 
+     Caused by: android.content.pm.PackageManager$NameNotFoundException: Xamarin.Android.Platform
+        at android.app.ApplicationPackageManager.getApplicationInfoAsUser(ApplicationPackageManager.java:345)
+        at android.app.ApplicationPackageManager.getApplicationInfo(ApplicationPackageManager.java:327)
+        at mono.MonoRuntimeProvider.attachInfo(MonoRuntimeProvider.java:32)
+        at android.app.ActivityThread.installProvider(ActivityThread.java:5864) 
+        at android.app.ActivityThread.installContentProviders(ActivityThread.java:5429) 
+        at android.app.ActivityThread.handleBindApplication(ActivityThread.java:5368) 
+        at android.app.ActivityThread.-wrap2(ActivityThread.java) 
+        at android.app.ActivityThread$H.handleMessage(ActivityThread.java:1534) 
+        at android.os.Handler.dispatchMessage(Handler.java:102) 
+        at android.os.Looper.loop(Looper.java:159) 
+        at android.app.ActivityThread.main(ActivityThread.java:6130) 
+        at java.lang.reflect.Method.invoke(Native Method) 
+        at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:865) 
+        at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:755) 
+     
+     
+    --------- beginning of system
+```
+
 ## SDKバージョンの指定
 
 「SDK Version」では、ビルドに使用するSDKのバージョンを指定します。
