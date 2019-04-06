@@ -12,7 +12,7 @@ Visual Studioの「構成マネージャー」の「構成」の設定に相当�
 Visual Studio上で開発を行う際の設定がバージョン管理を通して共有されます。
 
 App CenterでAndroidアプリケーションをビルドする際、ビルドしたAPK<span class="footnote">Android application package </span>ファイルを
-実機で起動する場合は、通常「Configuration」を「Relelase」ないしそれ相当の構成に設定します。
+実機で起動する場合は、通常「Configuration」を「Release」ないしそれ相当の構成に設定します。
 
 App Centerで、実機テスト(Test on real device)および、APKの端末への配布を行うには、以下の設定がビルドごとに必要です。
 
@@ -50,9 +50,9 @@ pushしたブランチを一度ビルドする必要があります。
 一度ビルドをすると、追加したビルド構成がApp Centerのビルドの設定上で選択可能になります。
 
 共有ランタイムを使用するビルドのアプリケーションを実機にインストールすると、起動に失敗した際、
-デバイスログに以下の様なエラーが出力されます。
+デバイスログに[@lst:code_050_010]の様なエラーが出力されます。
 
-```
+```{#lst:code_050_010 caption="共有ランタイム使用時のエラー"}
 2018-12-08 00:51:20.812 13301-13301/? E/AndroidRuntime: FATAL EXCEPTION: main
     Process: jp.ytabuchi.AppCenterSample, PID: 13301
     java.lang.RuntimeException: Unable to get provider mono.MonoRuntimeProvider: java.lang.RuntimeException: Unable to find application Mono.Android.Platform.ApiLevel_27 or Xamarin.Android.Platform!
@@ -136,6 +136,17 @@ App Centerでは、ソリューションファイル(.sln)の設定に従って�
 - `appcenter-post-build.sh`  (iOSまたはAndroid)
 - `appcenter-post-build.ps1`  (UWP)
 
+## ビルドスクリプトの有効化
+
+先ほど説明したファイル名のスクリプトをgitレポジトリーにpushすると、
+App Centerの画面上で[@fig:img_050_300_image]のように表示されます。
+
+![プロジェクトの作成](img/050/img-050-300.png){#fig:img_050_300_image}
+
+ビルドスクリプトの処理がビルドに行われるようにするには、
+画面上の表示でビルドスクリプトが認識されている状態で、
+「Save & Build」のボタンを一度選択し、ビルドスクリプトの設定を有効にする必要があります。
+
 ## Sign Build
 
 「Sign Build」の項目では、アプリケーションに対するデジタル署名の設定を行います。
@@ -163,9 +174,9 @@ App Centerの「Sign Build」の項目ではデジタル署名に行うキース
 - Visual Studioのアーカイブマネージャー
 
 Visual Studioのアーカイブマネージャーで作成したキーストアは、
-Visual StudioをインストールしているPCの以下のフォルダーに保存されています。
+Visual StudioをインストールしているPCの[@lst:code_055_020]のフォルダーに保存されています。
 
-```
+```{#lst:code_055_020 caption="キーストアの保存場所"}
 %USERPROFILE%\AppData\Local\Xamarin\Mono for Android\Keystore
 ```
 
@@ -189,9 +200,9 @@ Androidには、`AndroidManifest.xml` に記述したメタデータの値を<sp
 
 Xamarin.FormsのAndroidプロジェクトでは、Androidプロジェクトの`.csproj`にplaceholderに注入する値を記述し、ビルド時の環境変数からこの値を設定することで、ビルド時に`AndroidManifest.xml`に値を設定し、アプリケーションから取得することができます。<span class="footnote">[https://github.com/xamarin/xamarin-android/pull/342](https://github.com/xamarin/xamarin-android/pull/342)</span>
 
-まず、Androidプロジェクトの`.csproj`ファイルをテキストエディター等で開き、条件(`ConditionGroup`属性が)設定されていない`<PropertyGroup>`タグ配下に、以下の記述を追加します。
+まず、Androidプロジェクトの`.csproj`ファイルをテキストエディター等で開き、条件(`ConditionGroup`属性が)設定されていない`<PropertyGroup>`タグ配下に、[@lst:code_050_030]の記述を追加します。
 
-```
+```{#lst:code_050_030 caption=".csproj"}
 <AndroidManifestPlaceholders Condition=" '$(AndroidManifestPlaceholders)' == '' ">
     AppCenterSecret=default
 </AndroidManifestPlaceholders>
@@ -201,17 +212,17 @@ Xamarin.FormsのAndroidプロジェクトでは、Androidプロジェクトの`.
 
 `AppCenterSecret=default`の箇所は環境変数`AndroidManifestPlaceholders`が設定されていない場合のデフォルト値で、Visual Studio上でビルドが実行されている場合を想定しています。
 
-続いて、AndroidProjectの`Properties/AndroidManifest.xml`の`<application>`タグを以下の通り修正します。
+続いて、AndroidProjectの`Properties/AndroidManifest.xml`の`<application>`タグを[@lst:code_050_040]の通り修正します。
 
-```
+```{#lst:code_050_040 caption="Properties/AndroidManifest.xml"}
 <application android:label="CalendarViewer.Android">
   <meta-data android:name="AppCenterSecret" android:value="${AppCenterSecret}"/>
 </application>
 ```
 
-最後に、Androidプロジェクトの`MainActity.cs`内のAppCenterのSDKの起動処理を以下の通りに修正します。
+最後に、Androidプロジェクトの`MainActity.cs`内のAppCenterのSDKの起動処理を{#lst:code_050_050 caption="git statusの状態"}の通りに修正します。
 
-```
+```{#lst:code_050_050 caption="git statusの状態"}
 using Android.Content.PM;
 (略)
 var secret = PackageManager.GetApplicationInfo("jp.fieldnotes.tf06.CalendarViewer", PackageInfoFlags.MetaData).MetaData.GetString("AppCenterSecret");
@@ -221,9 +232,13 @@ AppCenter.Start(secret, typeof(Analytics), typeof(Crashes), typeof(Distribute));
 ここで、`jp.fieldnotes.tf06.CalendarViewer`の箇所は、
 `Properties/AndroidManifest.xml`で指定しているアプリケーションのパッケージ名であり、`<manifest>` 要素の `package` 属性で指定しているものです。
 
-最後に、App Centerの「Build Configuration」の「Environment Variable」の項目に環境変数「AndroidManifestPlaceholders」を追加してビルドします。
+最後に、App Centerの「Build Configuration」の「Environment Variable」の項目に[@fig:img_050_100_image]のように環境変数「AndroidManifestPlaceholders」を追加してビルドします。
 
-- http://www.raghurana.com/building-and-deploying-apps-using-vsts-and-hockeyapp-part-2nbsp-android
+![AndroidManifestPlaceholders](img/050/img-050-100.png){#fig:img_050_100_image}
+
+この際、変数名は`AndroidManifestPlaceholders`とし、値のところに`AppCenterSecret=(AppCenterのシークレット)`の形式で設定します。
+
+プレースホルダーに値を複数設定する場合は、`キー1=値1;キー2=値2;...`の形式で記述します。
 
 ## AndroidManifest.xmlのビルド時の書き換え
 
@@ -242,12 +257,12 @@ Androidアプリケーションでは、`AndroidManifest.xml`に記述するパ�
 
 App Centerのビルド環境では、以下のドキュメントに記述されているツール・コマンドを使用することが出来ます。
 
-次の例では、Node.jsを用いて、`AndroidManifest.xml`の書き換えを行っています。
+[@lst:code_050_060] および[@lst:code_050_070] の例では、Node.jsを用いて、`AndroidManifest.xml`の書き換えを行っています。
 
 - [https://docs.microsoft.com/en-us/appcenter/build/software](https://docs.microsoft.com/en-us/appcenter/build/software)
 
 
-```
+```{#lst:code_050_060 caption="git statusの状態"}
 #!/usr/bin/env bash
 
 if [ $APPCENTER_BRANCH != "release" ]; then
@@ -258,7 +273,7 @@ npm install jsdom --save-dev
 node rewrite.js Properties/AndroidManifest.xml
 ```
 
-```
+```{#lst:code_050_070 caption="git statusの状態"}
 const fs = require('fs');
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
@@ -285,11 +300,93 @@ Gitのリモートリポジトリーに新しいブランチをpushすると、
 「Build」に新しいブランチが作成されます。
 
 このブランチの右側の「Settings」を選択し、
-ビルドに必要な設定を行った上で「Save and Build」を、初回のビルドが実行されます。
+ビルドに必要な設定を行った上で「Save and Build」を選択すると、初回のビルドが実行されます。
 
 App Centerでは、環境変数や、デジタル署名のためのキーストアなど、
 ビルドのために必要な設定はブランチが作成される都度に設定するようになっています。
 
 このため、Gitリポジトリー上にブランチが作成された場合は、
 ここまでに説明した設定を新たに行う必要があります。
+
+## 定数クラスの切替による設定値の切り替え
+
+APIの接続URLの設定など、秘匿したい情報ではないが、アプリケーションの環境ごとに
+値が異なる場合は、定数クラスを作成し、定数クラスをApp Centerでのビルド時にブランチごとに切り替えるようにします。
+
+これには、Xamarin.Formsの場合、iOSやAndroidなど、プラットフォームに依存する方法をとらずに、
+設定値の切替を共通の方法で実装できるという利点があります。
+
+以下、ソリューション名を`CalendarViewer`として説明します。
+
+定数クラスを `CalendarViewer\Modeles\Env.cs`とした時、このファイルは[@lst:code_050_080]のように `.gitignore`でバージョン管理より除外します。
+
+```{#lst:code_050_080 caption="git statusの状態"}
+Env.cs
+```
+
+次に、環境ごとの設定を定数として記述したファイルを作成します。ここでは`Env.cs.prod`と`Env.cs.dev`の二通りとします。
+
+また、開発者向けのサンプルとして`Env.cs.sample`を作成します。
+
+
+`appcenter-pre-build.sh`([@lst:code_050_090])の中では、ブランチの環境変数`APPCENTER_BRANCH`を参照して、`Env.cs.prod`ないし`Env.cs.dev`を`Env.cs`にリネームするようにします。
+
+```{#lst:code_050_090 caption="appcenter-pre-build.sh"}
+#!/usr/bin/env bash
+
+set -x
+
+if [ $APPCENTER_BRANCH != "master" ]; then
+  cp -f ../CalendarViewer/Models/Env.cs.prod ../CalendarViewer/Models/Env.cs
+else
+  cp -f ../CalendarViewer/Models/Env.cs.dev ../CalendarViewer/Models/Env.cs
+fi
+```
+
+次に、Gitレポジトリーから開発者がクローンした直後にビルドエラーとなることを避けるため、`CalendarViewer.csproj`にビルドイベントの設定を行い、サンプル用の`Env.cs.sample`を`Env.cs`にリネームします。
+
+`CalendarViewer/CalendarViewer.csproj`の[@lst:code_050_100]の部分を[@lst:code_050_110]のように修正し、[@lst:code_050_120]の部分を追加します、
+
+```{#lst:code_050_100 caption="CalendarViewer.csproj(修正前)"}
+Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ProduceAssemblyReference>true</ProduceAssemblyReference>
+    <Configurations>Debug;Release;appcenter</Configurations>
+</PropertyGroup>
+(後略)
+```
+
+```{#lst:code_050_110 caption="CalendarViewer.csproj(修正後)"}
+<Project>
+  <Import Sdk="Microsoft.NET.Sdk" Project="Sdk.props" />
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ProduceAssemblyReference>true</ProduceAssemblyReference>
+    <Configurations>Debug;Release;appcenter</Configurations>
+  </PropertyGroup>
+  <Import Sdk="Microsoft.NET.Sdk" Project="Sdk.targets" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+</PropertyGroup>
+```
+
+```{#lst:code_050_120 caption="CalendarViewer.csproj(追加部分)"}
+<PropertyGroup Condition=" '$(OS)' == 'Windows_NT' ">
+  <PreBuildEvent>if not exist "$(ProjectDir)Models\Env.cs" copy /Y "$(ProjectDir)Models\Env.cs.sample" "$(ProjectDir)Models\Env.cs"</PreBuildEvent>
+</PropertyGroup>
+<PropertyGroup Condition=" '$(OS)' != 'Windows_NT' And '$(Configuration)'!='appcenter' ">
+  <PreBuildEvent>rsync "$(ProjectDir)Models/Env.cs.sample" "$(ProjectDir)Models/Env.cs"</PreBuildEvent>
+</PropertyGroup>
+```
+
+[@lst:code_050_110]の修正は、Xamarin.Formsプロジェクトの共通プロジェクト(ここでは`CalenadarViewer.csproj`)は
+.NET.Sdkプロジェクトであり、そのままでは[@lst:code_050_120]で参照している`${ProjectDir}`等のmsbuildの変数が
+参照できないためです。<span class="footnote">[https://stackoverflow.com/questions/43656260/projectdir-prebuild-event-macro-incorrect](https://stackoverflow.com/questions/43656260/projectdir-prebuild-event-macro-incorrect)</span> <span class="footnote">[https://github.com/dotnet/project-system/issues/1569](https://github.com/dotnet/project-system/issues/1569)</span>
+
+[@lst:code_050_120] の箇所が`Env.cs.sample`のリネームを行っている箇所です。OSの判定で
+Windows NT以外の判定を行っている箇所は、Visual Studio For Mac上の処理のための判定です。<span class="footnote">[https://qiita.com/amay077/items/aac34280feefd7a1db8c](https://qiita.com/amay077/items/aac34280feefd7a1db8c)</span> App Centerのビルド環境にはMacOSが使用されているため、開発者のビルド環境とApp Center上の環境を区別するため、
+Visual StudioのConfigurationを用いて切替を行っています。
 

@@ -28,8 +28,6 @@ Distribution Groupを作成するには、メニューの「Distribute」→「G
 ![グループの作成(2)](img/070/img-070-110.png){#fig:img_070_110_image}
 
 
-##
-
 ビルドしたアプリケーションをDistribution Groupに配布するには、
 ビルドの結果画面から、[@fig:img_070_120_image]から[@fig:img_070_160_image]の画面を経てでアプリケーションを配布します。
 
@@ -101,9 +99,9 @@ In-App Updateの機能を使用するには、アプリケーションのビル�
 
 ## iOSアプリケーションのシークレットの設定
 
-iOSアプリケーションでIn-App Updateの機能を有効にするには、`Info.plist`に以下の様にApp Centerのアプリケーションのシークレットを設定する必要があります。
+iOSアプリケーションでIn-App Updateの機能を有効にするには、`Info.plist`に[@lst:code_075_010]の様にApp Centerのアプリケーションのシークレットを設定する必要があります。
 
-```
+```{#lst:code_075_010 caption="git statusの状態"}
   <array>
       <dict>
           <key>CFBundleURLSchemes</key>
@@ -145,9 +143,9 @@ In-App Updateが有効な状態で新しいバージョンのアプリケーシ�
 ![アプリ内更新(iOS)](img/070/img-070-280.png){#fig:img_070_280_image}
 
 
-先述の通り、Android8.0(Oreo)から、Play Storeを経由しないで配布されているアプリケーション<span class="footnote">いわゆる野良アプリ</span>のインストールへの許可は、
+先述の通り、Android8.0(Oreo)から、Play Storeを経由しないで配布されているアプリケーションのインストールへの許可は、
 APKファイルをダウンロードするアプリケーションごとに行うようになっています。
 
-このため、AndrodoアプリケーションでIn-App Updateを有効にするには、そのアプリケーションの「不明なアプリのインストール」のパーミッションを許可する必要があります。
+このため、AndroidアプリケーションでIn-App Updateを有効にするには、そのアプリケーションの「不明なアプリのインストール」のパーミッションを許可する必要があります。
 
 ![アプリ内更新(iOS)](img/070/img-070-290.png){#fig:img_070_290_image}

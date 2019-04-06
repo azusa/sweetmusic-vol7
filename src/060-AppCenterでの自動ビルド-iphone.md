@@ -45,9 +45,9 @@ Appleに申請してApp Storeで公開するアプリケーションと、開発
 同一端末にインストールしたいなどで、ブランチごとにバンドル識別子を
 切り替えてアプリケーションをビルドすることがあります。
 
-ビルド時にバンドル識別子を切り替えるには、「Build App」の設定で選択されている`.sln`または`.csproj`と同じ階層に`appcenter-pre-build.sh` を作成して、以下のようなスクリプトを記述します。
+ビルド時にバンドル識別子を切り替えるには、「Build App」の設定で選択されている`.sln`または`.csproj`と同じ階層に`appcenter-pre-build.sh` を作成して、[@lst:code_065_010]のようなスクリプトを記述します。
 
-```
+```{#lst:code_060_010 caption="git statusの状態"}
 if [ $APPCENTER_BRANCH != "release" ]; then
   exit 0
 fi
