@@ -34,21 +34,21 @@ App Centerのアカウントが作成され、[@fig:img_046_050_image]の初期�
 
 ![App Centerの初期画面](img/046/img-046-050.png){#fig:img_046_050_image}
 
-アプリケーションを組織で管理する場合は、Oragnizationを作成します。[@fig:img_046_050_image]の画面の「Add new orgnization」のボタンを選択します。
+アプリケーションを組織で管理する場合は、Oragnizationを作成します。[@fig:img_046_050_image]の画面の「Add new organization」のボタンを選択します。
 
-[@fig:img_046_060_image]の画面でOragnizationの名称を入力し、「Add new orgnization」のボタンを選択します。
+[@fig:img_046_060_image]の画面でOragnizationの名称を入力し、「Add new organization」のボタンを選択します。
 
-![Add new orgnization](img/046/img-046-060.png){#fig:img_046_060_image}
+![Add new organization](img/046/img-046-060.png){#fig:img_046_060_image}
 
 続けて、App Center上でのビルド・配布の単位となる「App」を作成します。以降、「アプリケーション」と呼称します。
 
 [@fig:img_046_050_image]の画面で「Add app」のボタンを選択します。
 
-[@fig:img_046_070_image]の画面でアプリケーションの情報を入力し、「Add new app」を選択します。App Centerでは、クロスプラットフォームのアプリケーションについててはプラットフォームごとにアプリケーションを作成します。ここでは、先にXamarinのAndroidのアプリケーションを作成します。
+[@fig:img_046_070_image]の画面でアプリケーションの情報を入力し、「Add new app」を選択します。App Centerでは、クロスプラットフォームのアプリケーションについてはプラットフォームごとにアプリケーションを作成します。ここでは、先にXamarinのAndroidのアプリケーションを作成します。
 
 ![Add new app](img/046/img-046-070.png){#fig:img_046_070_image}
 
-アプリケーションを作成した後は、[@#fig:img_046_080_image]の画面でGitレポジトリーを選択します。App Centerでは、以下のバージョン管理サービスを使用することができます。
+アプリケーションを作成した後は、[@fig:img_046_080_image]の画面でGitレポジトリーを選択します。App Centerでは、以下のバージョン管理サービスを使用することができます。
 
 - Azure DevOps
 - GitHub
@@ -66,7 +66,7 @@ App Centerのアカウントが作成され、[@fig:img_046_050_image]の初期�
 
 続いて、iOSのアプリケーションの設定を行います。画面上部のぱんくずメニューから、Oragnizationを選択した後、「Add new app」を選択し、iOSアプリケーションの作成を行います。
 
-<div class="column">
+<div class="block">
 
 ### アプリケーションのURLは変更不可
 

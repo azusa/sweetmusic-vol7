@@ -5,15 +5,15 @@ Visual Studio App Center<span class="footnote">以下App Center</span>は、
 
 2016年の11月にVisual Studio Mobile Centerとしてプレビューが公開され、2017年11月にGAしました。
 
-App Centerのサービスは、[https://appcenter.ms/](https://appcenter.ms/)で提供されています。
+App Centerのサービスは、以下のドメインで提供されています。
+
+- [https://appcenter.ms/](https://appcenter.ms/)
 
 また、App Centerに関するドキュメントは、Microsoft Docsの以下のURLで提供されています。
 
 - [https://docs.microsoft.com/en-us/appcenter/](https://docs.microsoft.com/en-us/appcenter/)
 
-## アプリ
-
-App Serviceは、アプリケーションの開発者向けに、以下のサービスを提供しています。
+App Centerは、アプリケーションの開発者向けに、以下のサービスを提供しています。
 
 - アプリケーションのビルド
 - デバイス上でのテスト
@@ -41,16 +41,16 @@ App Serviceは、アプリケーションの開発者向けに、以下のサー
 
 本書では、この機能のうち、アプリケーションのビルド、アプリケーションの配布、クラッシュ情報の分析の機能を中心として取り上げます。
 
-## AppCenterのプラン
+## App Centerのプラン
 
-App Centerの料金プランは、以下に掲載されています。
+App Centerの料金プランは、次のサイトに掲載されています。
 
 - [https://visualstudio.microsoft.com/ja/app-center/pricing/](https://visualstudio.microsoft.com/ja/app-center/pricing/)
 - [https://docs.microsoft.com/en-us/appcenter/general/pricing](https://docs.microsoft.com/en-us/appcenter/general/pricing)
 
-また、無料プランでは、以下の機能を使用することができます。
+また、無料プランでは、次の機能を使用することができます。
 
-- 1ヶ月あたり240ビルド時間、ビルドあたり最長30分
+- 1ヶ月あたり240ビルド時間、1ビルドあたり最長30分
 - 実機でのUIテストに対する、30 日間の無料試用版
 - プッシュ通知のユーザーセグメントは5つまで
 
@@ -61,11 +61,11 @@ App Centerの料金プランは、以下に掲載されています。
 - クラッシュレポート
 - 実機での起動テスト
 
-また、Visual Studioのサブスクリプションがある場合は、サブスクリプションの特典としてApp Centerを使用することができます。^[https://docs.microsoft.com/en-us/visualstudio/subscriptions/vs-visual-studio-app-center](https://docs.microsoft.com/en-us/visualstudio/subscriptions/vs-visual-studio-app-center) サブスクリプションの特典を有しているかは、以下のURLのページの表示から確認することができます。
+また、Visual Studioのサブスクリプションがある場合は、サブスクリプションの特典としてApp Centerを使用することができます。<span class="footnote">[https://docs.microsoft.com/en-us/visualstudio/subscriptions/vs-visual-studio-app-center](https://docs.microsoft.com/en-us/visualstudio/subscriptions/vs-visual-studio-app-center) </span> サブスクリプションの特典を有しているかは、以下のURLのページの表示から確認することができます。
 
 - [https://my.visualstudio.com/benefits](https://my.visualstudio.com/benefits)
 
-<div class="column">
+<div class="block">
 
 ### MicrosoftアカウントとAzure ADアカウント
 
@@ -81,7 +81,7 @@ Azureポータルを始めとするMicrosoftのサービス上では、同一の
 この場合、App CenterやAzure DevOpsなどのAzure関連サービスでは、Microsoftアカウントでなく、Azure ADのアカウントを使ってサインインすることになります。
 </div>
 
-<div class="column">
+<div class="block">
 
 ### App CenterのアプリケーションのURL
 

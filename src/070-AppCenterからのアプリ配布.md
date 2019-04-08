@@ -16,10 +16,10 @@ App Centerからアプリケーションを配布するには、ビルドが以�
 - Device Buildであること
 - ビルドする際に指定したProvisioning Profileの対象に、アプリケーションをインストールする端末が含まれていること。
 
-## Distrubution Group
+## Distribution Group
 
 App Centerからアプリケーションを配布するには、配布時にユーザーを個別に指定するか、
-対象のユーザーを含んだグループ(Distrubution Group)を作成します。
+対象のユーザーを含んだグループ(Distribution Group)を作成します。
 
 Distribution Groupを作成するには、メニューの「Distribute」→「Groups」から、[@fig:img_070_100_image]から[@fig:img_070_110_image]の画面を経てグループを作成します。
 
@@ -29,7 +29,7 @@ Distribution Groupを作成するには、メニューの「Distribute」→「G
 
 
 ビルドしたアプリケーションをDistribution Groupに配布するには、
-ビルドの結果画面から、[@fig:img_070_120_image]から[@fig:img_070_160_image]の画面を経てでアプリケーションを配布します。
+ビルドの結果画面から、[@fig:img_070_120_image]から[@fig:img_070_160_image]の画面をたどってアプリケーションを配布します。
 
 ![アプリケーションの配布(1)](img/070/img-070-120.png){#fig:img_070_120_image}
 
@@ -42,7 +42,7 @@ Distribution Groupを作成するには、メニューの「Distribute」→「G
 ![アプリケーションの配布(5)](img/070/img-070-160.png){#fig:img_070_160_image}
 
 アプリケーションを配布すると、対象のユーザーのアカウントに[@fig:img_070_170_image] の通りのメールが送信されます。
-そのメール中のリンクからApp Centerのダウンロード画面にアクセスし、アプリケーションをダウンロードしてインストールします。
+メール中のリンクからApp Centerのダウンロード画面にアクセスし、アプリケーションをダウンロードしてインストールします。
 
 ![メール](img/070/img-070-170.png){#fig:img_070_170_image}
 
@@ -54,8 +54,8 @@ iOSアプリケーションの場合は、初回インストール時に、[@fig
 
 ![プロファイルのインストール(3)](img/070/img-070-200.png){#fig:img_070_200_image}
 
-なお、App Centerのビルドの設定の「Disribute Build」の設定を有効にすると、
-対象のブランチのビルドが成功するごとに、自動でアプリケーションを配布することができます。[@fig:img_070_210_image]
+なお、App Centerのビルドの設定の「Distribute Build」の設定([@fig:img_070_210_image])を有効にすると、
+対象のブランチのビルドが成功するごとに、自動でアプリケーションを配布することができます。
 
 ![Disribute Build](img/070/img-070-210.png){#fig:img_070_210_image}
 
@@ -81,7 +81,7 @@ App Centerにアクセスし、APKファイルをダウンロードするブラ�
 
 ## In-App Update(アプリ内更新)
 
-App Centerは、インストールしたアプリケーションの新しいバージョンが配布された場合に、
+App Centerには、インストールしたアプリケーションの新しいバージョンが配布された場合に、
 アプリケーション内で新しいバージョンに更新を行う機能があります。この機能を
 In-App Updateと呼びます。
 
@@ -92,8 +92,6 @@ In-App Updateの機能を使用するには、アプリケーションのビル�
 - Debugビルドでないこと<span class="footnote">App Centerのドキュメントでは「Releaseビルドであること」となっていますが、Releaseビルドの設定を元に新しい構成を作成した場合もIn-App Updateは適用されます。</span>
 - iOSアプリケーションの場合は、`Info.plist`にApp Centerのアプリケーションのシークレットが設定されていること(後述)
 - アプリケーションが、配布した際の通知メール中のリンク先のページからダウンロードされていること
-
-
 
 なお、Google Play(Android)ならびにApp Store(iOS)からインストールしたアプリケーションの場合は、In-App Updateの機能は無効になります。
 
@@ -114,11 +112,10 @@ iOSアプリケーションでIn-App Updateの機能を有効にするには、`
 
 ## ビルドバージョン
 
-In-App Updateは、新しいビルドが行われた時に、以下の手順でアプリケーションが更新されたと判断します。<span class="footenote">[https://docs.microsoft.com/en-us/appcenter/distribution/inappupdates](https://docs.microsoft.com/en-us/appcenter/distribution/inappupdates)</span>
+In-App Updateは、新しいビルドが行われた時に、以下の手順でアプリケーションが更新されたと判断します。<span class="footnote">[https://docs.microsoft.com/en-us/appcenter/distribution/inappupdates](https://docs.microsoft.com/en-us/appcenter/distribution/inappupdates)</span>
 
-Androidアプリケーションの場合は、`AndroidManifest.xml`で`versionCode`ないし`versionName`がインクリメントされていることです。
-
-iOSアプリケーションの場合は、`Info.plist`で`CFBundleShortVersionString`ないし`CFBundleVersion`がインクリメントされていることです。
+- Androidアプリケーションの場合は、`AndroidManifest.xml`で`versionCode`ないし`versionName`がインクリメントされていること。
+- iOSアプリケーションの場合は、`Info.plist`で`CFBundleShortVersionString`ないし`CFBundleVersion`がインクリメントされていること。
 
 App Centerでは、[@fig:img_070_250_image]のように、ビルドの設定の「Automatically increment version code」の
 チェックを有効にすることで、ビルド時にこれらのバージョンを自動でインクリメントすることができます。
@@ -133,8 +130,10 @@ In-App Updateの対象となるのは、配布した際の通知メール中の�
 
 ## In-App Updateの挙動
 
-In-App Updateが組み込まれているアプリケーションをインストールすると、アプリケーション内でブラウザーが開き、App Centerにアクセスします。この際、アプリケーション内に組み込まれているアプリケーションのシークレットを使ってApp Centerに認証を行い、認証が
-有効だった場合にIn-App Updateが有効になります。
+In-App Updateが組み込まれているアプリケーションをインストールすると、初回の起動時にアプリケーション内でブラウザーが開き、App Centerにアクセスします。
+
+この際、アプリケーション内に組み込まれているアプリケーションのシークレットを使って
+App Centerに認証を行い、認証が有効だった場合にIn-App Updateが有効になります。
 
 In-App Updateが有効な状態で新しいバージョンのアプリケーションがリリースされると、[@fig:img_070_270_image]ならびに[@fig:img_070_280_image]の通りアプリケーション内でダウンロードのポップアップが開きます。ポップアップの指示に従ってダウンロードすると、新しいバージョンのアプリケーションをダウンロードしてインストールします。
 

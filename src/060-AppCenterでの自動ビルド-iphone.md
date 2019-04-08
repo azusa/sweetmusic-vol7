@@ -10,11 +10,11 @@ Configuration、SDK VersionおよびBuild Scriptについては、Androidと同�
 
 App CenterのiOSアプリケーションのビルドには、「Device Build」と端末をUSBで接続して起動するためのビルドである「Simulator Build」の二通りがあります。
 
-「Simulator Build」のほうがビルドが高速に動作します。しかし、App Centerでは「Sumularator Build」でビルドしたipaファイルを起動することができません。このため、「Sumularator Build」でビルドしたアプリケーションを配布することはできません。
+「Simulator Build」はビルドが高速に動作します。しかし、App Centerでは「Sumularator Build」でビルドしたipaファイルを端末上で起動することができません。このため、「Sumularator Build」でビルドしたアプリケーションを配布することはできません。
 
 ## Provisining Profileの取得
 
-上記の「Device Build」で実機で起動するipaファイルを作成するには、ビルドに
+上記の「Device Build」で端末で起動するipaファイルを作成するには、ビルドに
 デジタル署名を行う必要があります。
 
 App Centerの「Sign Build」の項目で、Apple Developerサイトに登録した
@@ -45,12 +45,12 @@ Appleに申請してApp Storeで公開するアプリケーションと、開発
 同一端末にインストールしたいなどで、ブランチごとにバンドル識別子を
 切り替えてアプリケーションをビルドすることがあります。
 
-ビルド時にバンドル識別子を切り替えるには、「Build App」の設定で選択されている`.sln`または`.csproj`と同じ階層に`appcenter-pre-build.sh` を作成して、[@lst:code_065_010]のようなスクリプトを記述します。
+ビルド時にバンドル識別子を切り替えるには、「Build App」の設定で選択されている`.sln`または`.csproj`と同じ階層に`appcenter-pre-build.sh` を作成して、[@lst:code_060_010]のようなスクリプトを記述します。
 
 ```{#lst:code_060_010 caption="git statusの状態"}
-if [ $APPCENTER_BRANCH != "release" ]; then
+if [ $APPCENTER_BRANCH != "master" ]; then
   exit 0
 fi
 
-plutil -replace  CFBundleIdentifier -string "jp.co.gxp.experiment.honaka.release.CalendarViewer"  Info.plist
+plutil -replace  CFBundleIdentifier -string "jp.fieldnotes.experiment.honaka.release.CalendarViewer"  Info.plist
 ```

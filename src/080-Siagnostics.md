@@ -17,35 +17,34 @@ if (id == MenuItemType.Crash)
 }
 ```
 
-[@lst:code_085_020]のコードでは"Bomb"のメニューに対する画面遷移を定義していないため、
+[@lst:code_080_020]のコードでは"Bomb"のメニューに対する画面遷移を定義していないため、
 メニュー選択時にクラッシュするようになっています。
 
-```{#lst:code_080_020 caption="git statusの状態"}
-        public MenuPage()
+```{#lst:code_080_020 caption="クラッシュさせるコード"}
+public MenuPage()
+    {
+        InitializeComponent();
+        menuItems = new List<HomeMenuItem>
         {
-            InitializeComponent();
+            new HomeMenuItem {Id = MenuItemType.Browse, Title="Browse" },
+            new HomeMenuItem {Id = MenuItemType.About, Title="About" },
+            new HomeMenuItem {Id = MenuItemType.Crash, Title="Bomb" },
+            new HomeMenuItem {Id = MenuItemType.Error, Title="Error" }
+        };
 
-            menuItems = new List<HomeMenuItem>
-            {
-                new HomeMenuItem {Id = MenuItemType.Browse, Title="Browse" },
-                new HomeMenuItem {Id = MenuItemType.About, Title="About" },
-                new HomeMenuItem {Id = MenuItemType.Crash, Title="Bomb" },
-                new HomeMenuItem {Id = MenuItemType.Error, Title="Error" }
-            };
+        ListViewMenu.ItemsSource = menuItems;
 
-            ListViewMenu.ItemsSource = menuItems;
-
-            ListViewMenu.SelectedItem = menuItems[0];
-            ListViewMenu.ItemSelected += async (sender, e) =>
-            {
-                if (e.SelectedItem == null)
-                    return;
-                MenuItemType id = ((HomeMenuItem)e.SelectedItem).Id;
-                (略)
-                await RootPage.NavigateFromMenu((int)id);
-            };
-        }
+        ListViewMenu.SelectedItem = menuItems[0];
+        ListViewMenu.ItemSelected += async (sender, e) =>
+        {
+            if (e.SelectedItem == null)
+                return;
+            MenuItemType id = ((HomeMenuItem)e.SelectedItem).Id;
+            (略)
+            await RootPage.NavigateFromMenu((int)id);
+        };
     }
+}
 ```
 [@fig:img_080_100_image][@fig:img_080_400_image][@fig:img_080_200_image] は、アプリケーションを実行してクラッシュした際のレポートの画面です。
 
@@ -82,11 +81,11 @@ catch(Exception ex)
 ## 実機での起動テスト(Test on real device)
 
 App CenterのDiagonsticsで収集できるエラー及びクラッシュは、アプリケーションの起動処理で`AppCenter`クラスの`Start`メソッドが呼び出され、
-AppCenterのSDKが起動した後に発生するエラーです。
+App CenterのSDKが起動した後に発生したエラーです。
 
-これより前に発生するエラーは、AppCenterでは収集することができません。
+これより前に発生するエラーは、App Centerでは収集することができません。
 
-AppCenterでは、ビルド実行時に、AppCenterのデバイスファーム上での
+App Centerでは、ビルド実行時に、App Centerのデバイスファーム上での
 実機を使って、アプリケーションでの起動をテストすることができます。
 
 実機での起動テストを行うには、以下の条件が必要です。
@@ -101,7 +100,7 @@ AppCenterでは、ビルド実行時に、AppCenterのデバイスファーム�
 実機のテストは、Microsoftが運用するデバイスファーム上から、任意のデバイスが
 選ばれて実行されます。
 
-[@#fig:img_080_300_image]は、App Centerの画面から確認できる、起動テストの結果画面です。
+[@fig:img_080_300_image]は、App Centerの画面から確認できる、起動テストの結果画面です。
 
 ![起動テストの結果](img/080/img-080-300.png){#fig:img_080_300_image}
 

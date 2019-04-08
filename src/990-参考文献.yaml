@@ -1,4 +1,5 @@
 
+# 参考文献
 
 ---
 fontsize: 16pt
@@ -13,7 +14,7 @@ references:
     given: Dewayne E
   - family: Chell
     given: SWilliam M
-    title: 'Infuse: fusing integration test management with change management'
+  title: 'Infuse: fusing integration test management with change management'
   URL: https://www.computer.org/csdl/proceedings/cmpsac/1989/1964/00/00065147.pdf
   issued:
     year: 1989
@@ -21,6 +22,7 @@ references:
   author:
   - family: Grady
     given: Booch
+  title: 'Object-oriented analysis and design with applications (2nd ed.)'
   issued:
     year: 1994
 - id: Beck2005
@@ -34,6 +36,5 @@ references:
   translator:
   - family: 角
     given: 征典
-    
 ---
 

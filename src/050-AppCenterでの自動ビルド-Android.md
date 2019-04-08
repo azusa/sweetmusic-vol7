@@ -4,11 +4,11 @@
 
 App Centerのビルドの設定のための画面は、「Build」のメニューを選択して表示される「Branches」画面の、右側の歯車を選択して表示します。
 
-## Configration
+## Configuration
 
 「Configuration」では、ビルドを行う際の構成を選択します。
 
-Visual Studioの「構成マネージャー」の「構成」の設定に相当するもので、
+これはVisual Studioの「構成マネージャー」の「構成」の設定に相当するもので、
 Visual Studio上で開発を行う際の設定がバージョン管理を通して共有されます。
 
 App CenterでAndroidアプリケーションをビルドする際、ビルドしたAPK<span class="footnote">Android application package </span>ファイルを
@@ -16,17 +16,17 @@ App CenterでAndroidアプリケーションをビルドする際、ビルドし
 
 App Centerで、実機テスト(Test on real device)および、APKの端末への配布を行うには、以下の設定がビルドごとに必要です。
 
-- Andoirdプロジェクトの設定で、「Androidオプション」→「共有ランタイム」の使用にチェックが入っていないこと
+- Androidプロジェクトの設定で、「Androidオプション」→「共有ランタイム」の使用にチェックが入っていないこと
 - KeyStoreでビルドが署名されていること(後述)
 
-Xamarin.Anroidでは、デバッグ時に、共有ランタイム<span class="footnote">Shared RuntimeないしMono Shared Runtimeと呼ばれる</span>という、
+Xamarin.Androidでは、デバッグ時に、共有ランタイム<span class="footnote">Shared RuntimeないしMono Shared Runtimeと呼ばれる</span>という、
 ユーザーアプリケーションとは別のパッケージをインストールします。
 
 これは、一つのXamarin.Androidパッケージにつき、一度だけ行われます。 共有ランタイムとは、デバッグビルドを行う際に、アセンブリビルドの工程を省略し、ビルドおよび起動の時間の短縮をするために行われるものです。<span class="footnote">[https://www.buildinsider.net/mobile/insidexamarin/09](https://www.buildinsider.net/mobile/insidexamarin/09)</span>
 
 App CenterでビルドしたAPKファイルを端末にインストールする際は、この共有ランタイムのインストールが行われないため、この設定が有効になっているとアプリケーションが起動しません。
 
-「共有ランタイム」の設定は、Visual Studio2017で作成したXamarin.Andoroidのデフォルトでは、
+「共有ランタイム」の設定は、Visual Studio2017で作成したXamarin.Androidのデフォルトでは、
 Debugビルドでは有効、Releaseビルドでは有効になっています。
 
 この設定を確認・変更するには、Xamarin.Androidプロジェクトのプロパティ上の「Androidオプション」→「パッケージング プロパティ」上の、
@@ -40,7 +40,7 @@ App CenterでXamarin.Androidプロジェクトのビルドを行う場合、
 Visual Studioのデフォルトの構成である「Debug」「Release」の構成は、
 ローカルでのビルド・デバッグを行う際の構成として主に行われます。
 
-設定を共存させないため、構成マネージャーから、AppCenterでのビルドを
+設定を共存させないため、構成マネージャーから、App Centerでのビルドを
 行うための構成を作成すると良いです。
 
 なお、Visual Studio上で作成したビルド構成をApp Center上で反映させるには、
@@ -54,7 +54,7 @@ pushしたブランチを一度ビルドする必要があります。
 
 ```{#lst:code_050_010 caption="共有ランタイム使用時のエラー"}
 2018-12-08 00:51:20.812 13301-13301/? E/AndroidRuntime: FATAL EXCEPTION: main
-    Process: jp.ytabuchi.AppCenterSample, PID: 13301
+    Process: jp.fieldnotes.appcenter.CalendarViewer, PID: 13301
     java.lang.RuntimeException: Unable to get provider mono.MonoRuntimeProvider: java.lang.RuntimeException: Unable to find application Mono.Android.Platform.ApiLevel_27 or Xamarin.Android.Platform!
         at android.app.ActivityThread.installProvider(ActivityThread.java:5867)
         at android.app.ActivityThread.installContentProviders(ActivityThread.java:5429)
@@ -151,7 +151,7 @@ App Centerの画面上で[@fig:img_050_300_image]のように表示されます�
 
 「Sign Build」の項目では、アプリケーションに対するデジタル署名の設定を行います。
 
-App CenterでのAndoroidアプリケーションの実機テスト(Test on real device)および、APKの端末への配布を行うには、
+App CenterでのAndroidアプリケーションの実機テスト(Test on real device)および、APKの端末への配布を行うには、
 APKファイルに対し、デジタル署名が行われている必要があります。<span class="footnote">https://developer.android.com/guide/publishing/app-signing?hl=ja</span>
 
 App Centerの「Sign Build」の項目ではデジタル署名に行うキーストアのファイルをアップロードし、以下の設定を行います。
@@ -180,7 +180,7 @@ Visual StudioをインストールしているPCの[@lst:code_055_020]のフォ�
 %USERPROFILE%\AppData\Local\Xamarin\Mono for Android\Keystore
 ```
 
-## AndroidManifestPlaceholdersによるビルド時の環境変数の書き換え
+## AndroidManifestPlaceholdersによるビルド時の書き換え
 
 AndroidやiOSなどのプラットフォームでのアプリケーション開発では、APKファイルやIPAファイルを逆アセンブルすると
 アプリケーション内の情報は解読できてしまうため、秘匿したい情報をコードから隠蔽することに積極的な意味はありません。
@@ -239,6 +239,91 @@ AppCenter.Start(secret, typeof(Analytics), typeof(Crashes), typeof(Distribute));
 この際、変数名は`AndroidManifestPlaceholders`とし、値のところに`AppCenterSecret=(AppCenterのシークレット)`の形式で設定します。
 
 プレースホルダーに値を複数設定する場合は、`キー1=値1;キー2=値2;...`の形式で記述します。
+
+## 定数クラスの切替による設定値の切り替え
+
+APIの接続URLの設定など、秘匿したい情報ではないが、アプリケーションの環境ごとに
+値が異なる場合は、定数クラスを作成し、定数クラスをApp Centerでのビルド時にブランチごとに切り替えるようにします。
+
+これには、Xamarin.Formsアプリケーションの場合、iOSやAndroidなど、
+プラットフォームに依存する方法をとらずに、
+設定値の切替を共通の方法で実装できるという利点があります。
+
+以下、ソリューション名を`CalendarViewer`として説明します。
+
+定数クラスを `CalendarViewer\Modeles\Env.cs`とした時、このファイルは[@lst:code_050_080]のように `.gitignore`でバージョン管理より除外します。
+
+```{#lst:code_050_080 caption=".gitignore"}
+Env.cs
+```
+
+次に、環境ごとの設定を定数として記述したファイルを作成します。ここでは`Env.cs.prod`と`Env.cs.dev`の二通りとします。
+
+また、開発者向けのサンプルとして`Env.cs.sample`を作成します。
+
+
+`appcenter-pre-build.sh`([@lst:code_050_090])の中では、ブランチの環境変数`APPCENTER_BRANCH`を参照して、`Env.cs.prod`ないし`Env.cs.dev`を`Env.cs`にリネームするようにします。
+
+```{#lst:code_050_090 caption="appcenter-pre-build.sh"}
+#!/usr/bin/env bash
+
+set -x
+
+if [ $APPCENTER_BRANCH = "master" ]; then
+  cp -f ../CalendarViewer/Models/Env.cs.prod ../CalendarViewer/Models/Env.cs
+else
+  cp -f ../CalendarViewer/Models/Env.cs.dev ../CalendarViewer/Models/Env.cs
+fi
+```
+
+次に、Gitレポジトリーから開発者がクローンした直後にビルドエラーとなることを避けるため、`CalendarViewer.csproj`にビルドイベントの設定を行い、サンプル用の`Env.cs.sample`を`Env.cs`にリネームします。
+
+`CalendarViewer/CalendarViewer.csproj`の[@lst:code_050_100]の部分を[@lst:code_050_110]のように修正し、[@lst:code_050_120]の部分を追加します、
+
+```{#lst:code_050_100 caption="CalendarViewer.csproj(修正前)"}
+Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ProduceAssemblyReference>true</ProduceAssemblyReference>
+    <Configurations>Debug;Release;appcenter</Configurations>
+</PropertyGroup>
+(後略)
+```
+
+```{#lst:code_050_110 caption="CalendarViewer.csproj(修正後)"}
+<Project>
+  <Import Sdk="Microsoft.NET.Sdk" Project="Sdk.props" />
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ProduceAssemblyReference>true</ProduceAssemblyReference>
+    <Configurations>Debug;Release;appcenter</Configurations>
+  </PropertyGroup>
+  <Import Sdk="Microsoft.NET.Sdk" Project="Sdk.targets" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+</PropertyGroup>
+```
+
+```{#lst:code_050_120 caption="CalendarViewer.csproj(追加部分)"}
+<PropertyGroup Condition=" '$(OS)' == 'Windows_NT' ">
+  <PreBuildEvent>if not exist "$(ProjectDir)Models\Env.cs" copy /Y "$(ProjectDir)Models\Env.cs.sample" "$(ProjectDir)Models\Env.cs"</PreBuildEvent>
+</PropertyGroup>
+<PropertyGroup Condition=" '$(OS)' != 'Windows_NT' And '$(Configuration)'!='appcenter' ">
+  <PreBuildEvent>rsync -u "$(ProjectDir)Models/Env.cs.sample" "$(ProjectDir)Models/Env.cs"</PreBuildEvent>
+</PropertyGroup>
+```
+
+[@lst:code_050_110]の修正は、Xamarin.Formsプロジェクトの共通プロジェクト(ここでは`CalenadarViewer.csproj`)は
+.NET.Sdkプロジェクトであり、そのままでは[@lst:code_050_120]で参照している`${ProjectDir}`等のmsbuildの変数が
+参照できないためです。<span class="footnote">[https://stackoverflow.com/questions/43656260/projectdir-prebuild-event-macro-incorrect](https://stackoverflow.com/questions/43656260/projectdir-prebuild-event-macro-incorrect)</span> <span class="footnote">[https://github.com/dotnet/project-system/issues/1569](https://github.com/dotnet/project-system/issues/1569)</span>
+
+[@lst:code_050_120] の箇所が`Env.cs.sample`のリネームを行っている箇所です。OSの判定で
+Windows NT以外の判定を行っている箇所は、Visual Studio For Mac上の処理のための判定です。<span class="footnote">[https://qiita.com/amay077/items/aac34280feefd7a1db8c](https://qiita.com/amay077/items/aac34280feefd7a1db8c)</span> App Centerのビルド環境にはMacOSが使用されているため、開発者のビルド環境とApp Center上の環境を区別するため、
+Visual StudioのConfigurationを用いて切り替えを行っています。
+
+
 
 ## AndroidManifest.xmlのビルド時の書き換え
 
@@ -307,86 +392,4 @@ App Centerでは、環境変数や、デジタル署名のためのキースト�
 
 このため、Gitリポジトリー上にブランチが作成された場合は、
 ここまでに説明した設定を新たに行う必要があります。
-
-## 定数クラスの切替による設定値の切り替え
-
-APIの接続URLの設定など、秘匿したい情報ではないが、アプリケーションの環境ごとに
-値が異なる場合は、定数クラスを作成し、定数クラスをApp Centerでのビルド時にブランチごとに切り替えるようにします。
-
-これには、Xamarin.Formsの場合、iOSやAndroidなど、プラットフォームに依存する方法をとらずに、
-設定値の切替を共通の方法で実装できるという利点があります。
-
-以下、ソリューション名を`CalendarViewer`として説明します。
-
-定数クラスを `CalendarViewer\Modeles\Env.cs`とした時、このファイルは[@lst:code_050_080]のように `.gitignore`でバージョン管理より除外します。
-
-```{#lst:code_050_080 caption="git statusの状態"}
-Env.cs
-```
-
-次に、環境ごとの設定を定数として記述したファイルを作成します。ここでは`Env.cs.prod`と`Env.cs.dev`の二通りとします。
-
-また、開発者向けのサンプルとして`Env.cs.sample`を作成します。
-
-
-`appcenter-pre-build.sh`([@lst:code_050_090])の中では、ブランチの環境変数`APPCENTER_BRANCH`を参照して、`Env.cs.prod`ないし`Env.cs.dev`を`Env.cs`にリネームするようにします。
-
-```{#lst:code_050_090 caption="appcenter-pre-build.sh"}
-#!/usr/bin/env bash
-
-set -x
-
-if [ $APPCENTER_BRANCH != "master" ]; then
-  cp -f ../CalendarViewer/Models/Env.cs.prod ../CalendarViewer/Models/Env.cs
-else
-  cp -f ../CalendarViewer/Models/Env.cs.dev ../CalendarViewer/Models/Env.cs
-fi
-```
-
-次に、Gitレポジトリーから開発者がクローンした直後にビルドエラーとなることを避けるため、`CalendarViewer.csproj`にビルドイベントの設定を行い、サンプル用の`Env.cs.sample`を`Env.cs`にリネームします。
-
-`CalendarViewer/CalendarViewer.csproj`の[@lst:code_050_100]の部分を[@lst:code_050_110]のように修正し、[@lst:code_050_120]の部分を追加します、
-
-```{#lst:code_050_100 caption="CalendarViewer.csproj(修正前)"}
-Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <ProduceAssemblyReference>true</ProduceAssemblyReference>
-    <Configurations>Debug;Release;appcenter</Configurations>
-</PropertyGroup>
-(後略)
-```
-
-```{#lst:code_050_110 caption="CalendarViewer.csproj(修正後)"}
-<Project>
-  <Import Sdk="Microsoft.NET.Sdk" Project="Sdk.props" />
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <ProduceAssemblyReference>true</ProduceAssemblyReference>
-    <Configurations>Debug;Release;appcenter</Configurations>
-  </PropertyGroup>
-  <Import Sdk="Microsoft.NET.Sdk" Project="Sdk.targets" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DebugType>pdbonly</DebugType>
-    <DebugSymbols>true</DebugSymbols>
-</PropertyGroup>
-```
-
-```{#lst:code_050_120 caption="CalendarViewer.csproj(追加部分)"}
-<PropertyGroup Condition=" '$(OS)' == 'Windows_NT' ">
-  <PreBuildEvent>if not exist "$(ProjectDir)Models\Env.cs" copy /Y "$(ProjectDir)Models\Env.cs.sample" "$(ProjectDir)Models\Env.cs"</PreBuildEvent>
-</PropertyGroup>
-<PropertyGroup Condition=" '$(OS)' != 'Windows_NT' And '$(Configuration)'!='appcenter' ">
-  <PreBuildEvent>rsync "$(ProjectDir)Models/Env.cs.sample" "$(ProjectDir)Models/Env.cs"</PreBuildEvent>
-</PropertyGroup>
-```
-
-[@lst:code_050_110]の修正は、Xamarin.Formsプロジェクトの共通プロジェクト(ここでは`CalenadarViewer.csproj`)は
-.NET.Sdkプロジェクトであり、そのままでは[@lst:code_050_120]で参照している`${ProjectDir}`等のmsbuildの変数が
-参照できないためです。<span class="footnote">[https://stackoverflow.com/questions/43656260/projectdir-prebuild-event-macro-incorrect](https://stackoverflow.com/questions/43656260/projectdir-prebuild-event-macro-incorrect)</span> <span class="footnote">[https://github.com/dotnet/project-system/issues/1569](https://github.com/dotnet/project-system/issues/1569)</span>
-
-[@lst:code_050_120] の箇所が`Env.cs.sample`のリネームを行っている箇所です。OSの判定で
-Windows NT以外の判定を行っている箇所は、Visual Studio For Mac上の処理のための判定です。<span class="footnote">[https://qiita.com/amay077/items/aac34280feefd7a1db8c](https://qiita.com/amay077/items/aac34280feefd7a1db8c)</span> App Centerのビルド環境にはMacOSが使用されているため、開発者のビルド環境とApp Center上の環境を区別するため、
-Visual StudioのConfigurationを用いて切替を行っています。
 
