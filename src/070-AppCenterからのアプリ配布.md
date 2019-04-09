@@ -1,4 +1,4 @@
-# App Centerからのアプリ配布
+# 8.App Centerからのアプリ配布
 
 App Centerでは、ビルドしたアプリケーションを、テストなどの用途で使用するユーザーに対して配布することができます。
 
@@ -60,7 +60,7 @@ iOSアプリケーションの場合は、初回インストール時に、[@fig
 ![Disribute Build](img/070/img-070-210.png){#fig:img_070_210_image}
 
 
-## アプリ内のパーミッション許可
+## アプリケーション内のパーミッション許可
 
 Android8.0(Oreo)から、Play Storeを経由しないで配布されているアプリケーション<span class="footnote">いわゆる野良アプリ</span>のインストールへの許可は、
 APKファイルをダウンロードするアプリケーションごとに行うようになりました。
@@ -99,7 +99,7 @@ In-App Updateの機能を使用するには、アプリケーションのビル�
 
 iOSアプリケーションでIn-App Updateの機能を有効にするには、`Info.plist`に[@lst:code_075_010]の様にApp Centerのアプリケーションのシークレットを設定する必要があります。
 
-```{#lst:code_075_010 caption="git statusの状態"}
+```{#lst:code_075_010 caption="Info.plistへのシークレットの設定"}
   <array>
       <dict>
           <key>CFBundleURLSchemes</key>
@@ -122,11 +122,12 @@ App Centerでは、[@fig:img_070_250_image]のように、ビルドの設定の�
 
 ![Automatically increment version code](img/070/img-070-250.png){#fig:img_070_250_image}
 
-## ダウンロード先
+## In-App Updateの対象となるダウンロード先
 
-In-App Updateの対象となるのは、配布した際の通知メール中のリンク先のページ(`install.appcenter.ms`ドメイン)です。App Centerではメニューの「Distribute」→「Releases」の各リリース画面からもアプリケーションをダウンロードしたインストールすることができますが、この場合は[@fig:img_070_260_image]のダイアログが出てIn-App Updateは無効になります。
+In-App Updateの対象となるのは、配布した際の通知メール中のリンク先のページ(`install.appcenter.ms`ドメイン)です。App Centerではメニューの「Distribute」→「Releases」の各リリース画面からもアプリケーションをダウンロードしたインストールすることができます。このページから
+アプリケーションをインストールした場合は、[@fig:img_070_260_image]のダイアログが出てIn-App Updateは無効になります。
 
-![Automatically increment version code](img/070/img-070-260.png){#fig:img_070_260_image}
+![In-App Updateが無効な場合の画面](img/070/img-070-260.png){#fig:img_070_260_image}
 
 ## In-App Updateの挙動
 
@@ -145,6 +146,7 @@ In-App Updateが有効な状態で新しいバージョンのアプリケーシ�
 先述の通り、Android8.0(Oreo)から、Play Storeを経由しないで配布されているアプリケーションのインストールへの許可は、
 APKファイルをダウンロードするアプリケーションごとに行うようになっています。
 
-このため、AndroidアプリケーションでIn-App Updateを有効にするには、そのアプリケーションの「不明なアプリのインストール」のパーミッションを許可する必要があります。
+このため、AndroidアプリケーションでIn-App Updateを有効にするには、[@fig:img_070_290_image]のようにそのアプリケーションの「不明なアプリのインストール」のパーミッションを許可する必要があります。
 
-![アプリ内更新(iOS)](img/070/img-070-290.png){#fig:img_070_290_image}
+![In-App Updateのパーミッションの許可](img/070/img-070-290.png){#fig:img_070_290_image}
+

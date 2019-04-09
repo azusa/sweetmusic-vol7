@@ -32,7 +32,8 @@ references:
     given: Kent
   - family: Andres
     given: Cynthia
-  issued: 2015
+  issued:
+    year: 2015
   translator:
   - family: 角
     given: 征典

@@ -1,5 +1,4 @@
-
-# Diagonstics
+# 9.Diagonstics
 
 Diagonsticsは、日本語に訳すと「診断」という意味ですが、AppCenterでは、
 アプリケーションのクラッシュならびにエラー発生の情報を収集することができます。
@@ -46,21 +45,21 @@ public MenuPage()
     }
 }
 ```
-[@fig:img_080_100_image][@fig:img_080_400_image][@fig:img_080_200_image] は、アプリケーションを実行してクラッシュした際のレポートの画面です。
+[@fig:img_080_100_image]、[@fig:img_080_400_image]および[@fig:img_080_200_image] は、アプリケーションを実行してクラッシュした際のレポートの画面です。
 
-![メニュバー](img/080/img-080-100.png){#fig:img_080_100_image}
+![クラッシュレポート(1)](img/080/img-080-100.png){#fig:img_080_100_image}
 
-![メニュバー](img/080/img-080-400.png){#fig:img_080_400_image}
+![クラッシュレポート(2)](img/080/img-080-400.png){#fig:img_080_400_image}
 
-![メニュバー](img/080/img-080-200.png){#fig:img_080_200_image}
+![クラッシュレポート(3)](img/080/img-080-200.png){#fig:img_080_200_image}
 
 ## エラーレポート
 
-アプリケーション内で発生したエラーを補足するには、
+アプリケーション内で発生したエラーを捕捉するには、
 例外を補足した処理内で、
 [@lst:code_080_030]のように`Microsoft.AppCenter.Crashes`クラスの`TrackError`メソッドを呼び出します。
 
-```{#lst:code_080_030 caption="git statusの状態"}
+```{#lst:code_080_030 caption="エラーを捕捉するコード"}
 try
 {
     string value = null;

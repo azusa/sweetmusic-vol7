@@ -22,14 +22,14 @@ for (var i=0; i<footNoteArray.length; i++){
     hrefInBody.setAttribute("href", "#fn" + cnt);
     hrefInBody.setAttribute("id", "fnref" + cnt);
     hrefInBody.setAttribute("class", "fnref");
-    hrefInBody.textContent = cnt;
+    hrefInBody.textContent = " *" + cnt;
     footNote.parentNode.insertBefore(hrefInBody, footNote); 
 
     // 脚注のインデックス
     const href = document.createElement('a');
     href.setAttribute("href", "#fnref" + cnt);
     href.setAttribute("class", "fnref");
-    href.textContent = cnt;
+    href.textContent = "*" + cnt + " ";
     footNote.insertBefore(href, footNote.firstChild);
     footNote.setAttribute("id", "fn" + cnt);
 }

@@ -1,4 +1,4 @@
-# App CenterによるiOSアプリケーションの自動ビルド
+# 7.App CenterによるiOSアプリケーションの自動ビルド
 
 この設定では、App CenterでiOSアプリケーションの自動ビルドを行うために、ブランチごとに必要な設定を説明します。
 
@@ -39,15 +39,17 @@ Provisiong Profileは、アプリケーションを配布するApple ID保持者
 
 Xamarin.FormsのiOSアプリケーションでは、バンドル識別子が一意である必要があります。
 
-バンドル識別子は、`Info.plist`に記述されています。
+バンドル識別子は、iOSのプロウジェクト配下の`Info.plist`に記述されています。
 
 Appleに申請してApp Storeで公開するアプリケーションと、開発版のアプリケーションを
 同一端末にインストールしたいなどで、ブランチごとにバンドル識別子を
 切り替えてアプリケーションをビルドすることがあります。
 
-ビルド時にバンドル識別子を切り替えるには、「Build App」の設定で選択されている`.sln`または`.csproj`と同じ階層に`appcenter-pre-build.sh` を作成して、[@lst:code_060_010]のようなスクリプトを記述します。
+ビルド時にバンドル識別子を切り替えるには、iOSアプリケーションのプロジェクトの`.csproj`と同じ階層に`appcenter-pre-build.sh` を作成して、[@lst:code_060_010]のようなスクリプトを記述します。
 
-```{#lst:code_060_010 caption="git statusの状態"}
+```{#lst:code_060_010 caption="`appcenter-pre-build.sh"}
+#!/usr/bin/env bash
+
 if [ $APPCENTER_BRANCH != "master" ]; then
   exit 0
 fi

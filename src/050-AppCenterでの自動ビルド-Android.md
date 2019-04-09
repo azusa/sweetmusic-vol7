@@ -1,4 +1,4 @@
-# App CenterによるAndroidアプリケーションの自動ビルド
+# 6.App CenterによるAndroidアプリケーションの自動ビルド
 
 この設定では、App CenterでAndroidアプリケーションの自動ビルドを行うために、ブランチごとに必要な設定を説明します。
 
@@ -30,7 +30,9 @@ App CenterでビルドしたAPKファイルを端末にインストールする�
 Debugビルドでは有効、Releaseビルドでは有効になっています。
 
 この設定を確認・変更するには、Xamarin.Androidプロジェクトのプロパティ上の「Androidオプション」→「パッケージング プロパティ」上の、
-「共有ランタイム」のチェックを確認します。
+「共有ランタイム」のチェックを確認します。([@fig:img_050_090_image])
+
+![共有ランタイムの設定](img/050/img-050-090.png){#fig:img_050_090_image}
 
 Visual Studio For Macの場合はXamarin.Androidプロジェクトのプロパティ上の「ビルド」→「Androidのビルド」→「General」内の、「共有Monoランタイムを使用」です。
 
@@ -81,7 +83,7 @@ pushしたブランチを一度ビルドする必要があります。
         at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:865) 
         at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:755) 
      Caused by: android.content.pm.PackageManager$NameNotFoundException: Xamarin.Android.Platform
-        at android.app.ApplicationPackageManager.getApplicationInfoAsUser(ApplicationPackageManager.java:345)
+        at android.app.ApplicationPackageManager.getApplicationInfoAsUser (ApplicationPackageManager.java:345)
         at android.app.ApplicationPackageManager.getApplicationInfo(ApplicationPackageManager.java:327)
         at mono.MonoRuntimeProvider.attachInfo(MonoRuntimeProvider.java:32)
         at android.app.ActivityThread.installProvider(ActivityThread.java:5864) 
@@ -139,9 +141,9 @@ App Centerでは、ソリューションファイル(.sln)の設定に従って�
 ## ビルドスクリプトの有効化
 
 先ほど説明したファイル名のスクリプトをgitレポジトリーにpushすると、
-App Centerの画面上で[@fig:img_050_300_image]のように表示されます。
+[@fig:img_050_300_image]の画面の「Build Script」の項目にスクリプトの設定が表示されます。
 
-![プロジェクトの作成](img/050/img-050-300.png){#fig:img_050_300_image}
+![ビルドスクリプトの設定](img/050/img-050-300.png){#fig:img_050_300_image}
 
 ビルドスクリプトの処理がビルドに行われるようにするには、
 画面上の表示でビルドスクリプトが認識されている状態で、
@@ -174,11 +176,7 @@ App Centerの「Sign Build」の項目ではデジタル署名に行うキース
 - Visual Studioのアーカイブマネージャー
 
 Visual Studioのアーカイブマネージャーで作成したキーストアは、
-Visual StudioをインストールしているPCの[@lst:code_055_020]のフォルダーに保存されています。
-
-```{#lst:code_055_020 caption="キーストアの保存場所"}
-%USERPROFILE%\AppData\Local\Xamarin\Mono for Android\Keystore
-```
+`%USERPROFILE%\AppData\Local\Xamarin\Mono for Android\Keystore`に保存されています。
 
 ## AndroidManifestPlaceholdersによるビルド時の書き換え
 
@@ -193,8 +191,8 @@ iOSアプリケーションにおける`AppDelegate.cs`の`FinishedLaunching`メ
 しかし、ソースコードを公開している場合や、外部の業者に開発を委託する場合など、
 ソースコード中にキーを埋め込みたくない場合があります。
 
-Androidには、`AndroidManifest.xml` に記述したメタデータの値を<span class="footnote">https://developer.android.com/guide/topics/manifest/meta-data-element</span>、
-アプリケーション内で `android.content.pm.PackageManager`クラスの`getApplicationIcon`メソッド<span class="footnote">[https://developer.android.com/reference/android/content/pm/PackageManager.html#getApplicationInfo(java.lang.String,%20int)](https://developer.android.com/reference/android/content/pm/PackageManager.html#getApplicationInfo(java.lang.String,%20int))</span>を通して取得する仕組みがあります。
+Androidには、`AndroidManifest.xml` に記述したメタデータの値を<span class="footnote">[https://developer.android.com/guide/topics/manifest/meta-data-element](https://developer.android.com/guide/topics/manifest/meta-data-element)</span>、
+アプリケーション内で `android.content.pm.PackageManager`クラスの`getApplicationInfo`メソッド<span class="footnote">[https://bit.ly/2I99zeE](https://bit.ly/2I99zeE)(developer.android.com)</span>を通して取得する仕組みがあります。
 
 また、 `AndroidManifest.xml`内に例えば`${AppCenterSecret}`のように、`$`というプレースホルダーではじまるパラメータを記述することで、ビルドプロセスのシステムプロパティ等に設定した値を、`AndroidManifest.xml`に注入することができます。
 
@@ -222,7 +220,7 @@ Xamarin.FormsのAndroidプロジェクトでは、Androidプロジェクトの`.
 
 最後に、Androidプロジェクトの`MainActity.cs`内のAppCenterのSDKの起動処理を{#lst:code_050_050 caption="git statusの状態"}の通りに修正します。
 
-```{#lst:code_050_050 caption="git statusの状態"}
+```{#lst:code_050_050 caption="AppCenterのSDKの起動処理の修正"}
 using Android.Content.PM;
 (略)
 var secret = PackageManager.GetApplicationInfo("jp.fieldnotes.tf06.CalendarViewer", PackageInfoFlags.MetaData).MetaData.GetString("AppCenterSecret");
@@ -276,9 +274,9 @@ else
 fi
 ```
 
-次に、Gitレポジトリーから開発者がクローンした直後にビルドエラーとなることを避けるため、`CalendarViewer.csproj`にビルドイベントの設定を行い、サンプル用の`Env.cs.sample`を`Env.cs`にリネームします。
+次に、Gitレポジトリーから開発者がクローンした直後にビルドエラーとなることを避けるため、`CalendarViewer.csproj`にビルドイベントの設定を行い、サンプル用の`Env.cs.sample`を`Env.cs`にリネームする処理を加えます。
 
-`CalendarViewer/CalendarViewer.csproj`の[@lst:code_050_100]の部分を[@lst:code_050_110]のように修正し、[@lst:code_050_120]の部分を追加します、
+`CalendarViewer/CalendarViewer.csproj`の[@lst:code_050_100]の部分を[@lst:code_050_110]のように修正し、[@lst:code_050_120]の部分を追加します。
 
 ```{#lst:code_050_100 caption="CalendarViewer.csproj(修正前)"}
 Project Sdk="Microsoft.NET.Sdk">
@@ -316,7 +314,7 @@ Project Sdk="Microsoft.NET.Sdk">
 ```
 
 [@lst:code_050_110]の修正は、Xamarin.Formsプロジェクトの共通プロジェクト(ここでは`CalenadarViewer.csproj`)は
-.NET.Sdkプロジェクトであり、そのままでは[@lst:code_050_120]で参照している`${ProjectDir}`等のmsbuildの変数が
+.NET.Sdkプロジェクトであり、そのままでは[@lst:code_050_120]で記述している`${ProjectDir}`等のmsbuildの変数が
 参照できないためです。<span class="footnote">[https://stackoverflow.com/questions/43656260/projectdir-prebuild-event-macro-incorrect](https://stackoverflow.com/questions/43656260/projectdir-prebuild-event-macro-incorrect)</span> <span class="footnote">[https://github.com/dotnet/project-system/issues/1569](https://github.com/dotnet/project-system/issues/1569)</span>
 
 [@lst:code_050_120] の箇所が`Env.cs.sample`のリネームを行っている箇所です。OSの判定で

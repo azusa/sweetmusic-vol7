@@ -15,6 +15,10 @@ div#imprint {
     break-before: page;
 }
 
+div.newpage {
+    break-before: page;
+}
+
 div.block {
     border: 1px;
     border-style: solid;
@@ -35,10 +39,11 @@ h1,h2,h3 {
 
 h1 {
     font-size: 18pt;
+    border-left: solit 3px black;
 }
 
 h2 {
-    font-size: 16pt;
+    font-size: 14pt;
 }
 
 h3 {
@@ -135,7 +140,7 @@ h2#title2 {
 
 #author p {
     font-family: "Source Han Sans";
-    font: size 12pt;
+    font-size: 12pt;
 }
 
 table#author {
@@ -173,7 +178,7 @@ td.key {
 
 @font-face {
     font-family: "Source Han Sans";
-    src: url(SourceHanSans-Regular.otf) format('opentype')
+    src: url(SourceHanSans-Normal.otf) format('opentype')
 }
 @font-face {
     font-family: "Ricty Diminished";
@@ -185,9 +190,30 @@ td.key {
     float: footnote;
 }
 
-/* ヘッダー */
-@page {
-     @top-center {
-        content: "はじめに";
-    }
+p a.fnref {
+    font-family: "Ricty Diminished";
+    color: black;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* caption */
+figcaption {
+    font-family: "Source Han Sans";
+    font-size: 11pt;
+}
+
+/* 引用部 */
+
+span.citation a {
+    font-family: "Ricty Diminished";
+    color: black;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+
+/*プロフィール部分*/
+span.profile {
+    font-family: "Source Han Sans";
 }

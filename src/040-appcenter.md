@@ -1,4 +1,4 @@
-# Visual Studio App Center
+# 3.Visual Studio App Center
 
 Visual Studio App Center<span class="footnote">以下App Center</span>は、
 マイクロソフト社により提供されている、アプリケーションに特化した開発プラットフォームサービスです。
@@ -65,6 +65,8 @@ App Centerの料金プランは、次のサイトに掲載されています。
 
 - [https://my.visualstudio.com/benefits](https://my.visualstudio.com/benefits)
 
+<div class="newpage"></div>
+
 <div class="block">
 
 ### MicrosoftアカウントとAzure ADアカウント
@@ -76,7 +78,7 @@ App Centerの組織の管理者がユーザーを招待した場合、
 
 この際、招待したユーザーが既にMicrosoftアカウントを使用していると、
 Azureポータルを始めとするMicrosoftのサービス上では、同一のIDで
-アカウントが二つ存在している状態となります。<span class="footnote">Azure ADがいつの間にか作られてて結構困った話 [https://blog.divakk.co.jp/entry/2017/12/13/195630](https://blog.divakk.co.jp/entry/2017/12/13/195630)</span><span class="footnote">#AzureAD と Microsoft アカウントの重複問題に対する取り組み [https://blogs.technet.microsoft.com/mssvrpmj/2016/09/30/azuread-%E3%81%A8-microsoft-%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%81%AE%E9%87%8D%E8%A4%87%E5%95%8F%E9%A1%8C%E3%81%AB%E5%AF%BE%E3%81%99%E3%82%8B%E5%8F%96%E3%82%8A%E7%B5%84%E3%81%BF/](https://blogs.technet.microsoft.com/mssvrpmj/2016/09/30/azuread-%E3%81%A8-microsoft-%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%81%AE%E9%87%8D%E8%A4%87%E5%95%8F%E9%A1%8C%E3%81%AB%E5%AF%BE%E3%81%99%E3%82%8B%E5%8F%96%E3%82%8A%E7%B5%84%E3%81%BF/)</span>
+アカウントが二つ存在している状態となります。<span class="footnote">Azure ADがいつの間にか作られてて結構困った話 [https://blog.divakk.co.jp/entry/2017/12/13/195630](https://blog.divakk.co.jp/entry/2017/12/13/195630)</span><span class="footnote">#AzureAD と Microsoft アカウントの重複問題に対する取り組み  [https://bit.ly/2HbOCvl](https://bit.ly/2HbOCvl)(blogs.technet.microsoft.com)</span>
 
 この場合、App CenterやAzure DevOpsなどのAzure関連サービスでは、Microsoftアカウントでなく、Azure ADのアカウントを使ってサインインすることになります。
 </div>
